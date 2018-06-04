@@ -37,7 +37,13 @@ const transactionType = document.getElementById('transactiontype')
 
 //Define secondary input variables
 
-
+const inputAddress = document.getElementById('inputaddress')
+const inputAddress2 = document.getElementById('inputaddress2')
+const inputCity = document.getElementById('inputcity')
+const inputZip = document.getElementById('inputzip')
+const inputCompany = document.getElementById('inputcompany')
+const inputPreparedBy = document.getElementById('inputpreparedby')
+const inputPreparedFor = document.getElementById('inputpreparedfor')
 
 //Store data in local storage
 function storeLocal(){
@@ -52,6 +58,14 @@ paymentSplit.addEventListener('change',storeLocal)
 transactionType.addEventListener('change',storeLocal)
 
 //Event Listeners - secondary
+inputAddress.addEventListener('keyup',storeLocal)
+inputAddress2.addEventListener('keyup',storeLocal)
+inputCity.addEventListener('keyup',storeLocal)
+inputZip.addEventListener('keyup',storeLocal)
+inputCompany.addEventListener('keyup',storeLocal)
+inputPreparedBy.addEventListener('keyup',storeLocal)
+inputPreparedFor.addEventListener('keyup',storeLocal)
+
 
 
 
@@ -164,15 +178,15 @@ function generalTemplate (general) {
       <div class="col">
         <h5>General Information</h5> Company
         <div class="input-group input-group-sm mb-3">
-          <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+          <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="inputcompany">
         </div>
         Prepared by
         <div class="input-group input-group-sm mb-3">
-          <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+          <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="inputpreparedby">
         </div>
         Prepared for
         <div class="input-group input-group-sm mb-3">
-          <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+          <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="inputpreparedfor">
         </div>
       </div>
     </div>
