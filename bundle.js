@@ -1,7 +1,18 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+function splitPayments(element) {
+//  console.log(element.value)
+
+}
+
+module.exports = {
+  splitPayments
+}
+
+},{}],2:[function(require,module,exports){
 //Import data & templates
 // const data = require('./data')
 const templates = require('./templates')
+const calc = require('./calculations')
 
 
 //Render the Summary Column
@@ -17,12 +28,15 @@ function renderGeneral() {
 }
 renderGeneral()
 
-//Define input variables.
+//Define required input variables.
 const salesPrice = document.getElementById('salesprice')
 const loanAmount = document.getElementById('loanamount')
 const inputState = document.getElementById('inputstate')
 const paymentSplit = document.getElementById('paymentsplit')
 const transactionType = document.getElementById('transactiontype')
+
+//Define secondary input variables
+
 
 
 //Store data in local storage
@@ -30,19 +44,28 @@ function storeLocal(){
   localStorage.setItem(event.target.id, event.target.value)
 }
 
-// Event Listeners
+// Event Listeners - Required
 salesPrice.addEventListener('keyup',storeLocal)
 loanAmount.addEventListener('keyup',storeLocal)
 inputState.addEventListener('change',storeLocal)
 paymentSplit.addEventListener('change',storeLocal)
 transactionType.addEventListener('change',storeLocal)
 
+//Event Listeners - secondary
+
+
+
+
+
 // Local Storage defaults - NOTE this probably needs to be changed... may not allow state changes
+// Maybe make a "defaults" function included in the reset button?
 localStorage.setItem("inputstate", "Guam")
 localStorage.setItem("paymentsplit", "buyerBorrowerSplit")
 localStorage.setItem("transactiontype", "Residential")
 
-},{"./templates":2}],2:[function(require,module,exports){
+// calc.splitPayments(paymentSplit)
+
+},{"./calculations":1,"./templates":3}],3:[function(require,module,exports){
 // function generalTemplate (general) {
 //   return `
 //   <tr>
@@ -203,4 +226,4 @@ module.exports = {
   generalTemplate
 }
 
-},{}]},{},[1]);
+},{}]},{},[2]);
