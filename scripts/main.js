@@ -10,10 +10,21 @@ function renderSummary () {
 }
 renderSummary()
 
-
 //Render the General Pane
+
 function renderGeneral() {
-  document.getElementById('generalpane').innerHTML = templates.generalTemplate()
+  var state = localStorage.getItem('general')
+  JSON.parse(state)
+
+  if (state) {
+    document.getElementById('generalpane').innerHTML = templates.generalTemplate(state)
+
+  } else {
+    document.getElementById('generalpane').innerHTML = templates.generalTemplate()
+
+  }
+
+
 }
 renderGeneral()
 

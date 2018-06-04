@@ -1,4 +1,4 @@
-function generalTemplate (general) {
+function generalTemplate (general = {}) {
   return `
   <h4> Transaction Details </h4>
   <!-- Required Fields  -->
@@ -10,7 +10,7 @@ function generalTemplate (general) {
           <div class="input-group-prepend">
             <span class="input-group-text">$</span>
           </div>
-          <input type="text" class="form-control" id="salesprice" aria-label="Amount (to the nearest dollar)">
+          <input type="text" class="form-control" id="salesprice" aria-label="Amount (to the nearest dollar)" value=${general.salesprice || ''}>
           <div class="input-group-append">
             <span class="input-group-text">.00</span>
           </div>
@@ -22,7 +22,7 @@ function generalTemplate (general) {
           <div class="input-group-prepend">
             <span class="input-group-text">$</span>
           </div>
-          <input type="text" class="form-control" id="loanamount" aria-label="Amount (to the nearest dollar)">
+          <input type="text" class="form-control" id="loanamount" aria-label="Amount (to the nearest dollar)" value=${general.loanamount || ''}>
           <div class="input-group-append">
             <span class="input-group-text">.00</span>
           </div>

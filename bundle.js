@@ -21,10 +21,21 @@ function renderSummary () {
 }
 renderSummary()
 
-
 //Render the General Pane
+
 function renderGeneral() {
-  document.getElementById('generalpane').innerHTML = templates.generalTemplate()
+  var state = localStorage.getItem('general')
+  JSON.parse(state)
+
+  if (state) {
+    document.getElementById('generalpane').innerHTML = templates.generalTemplate(state)
+
+  } else {
+    document.getElementById('generalpane').innerHTML = templates.generalTemplate()
+
+  }
+
+
 }
 renderGeneral()
 
@@ -102,7 +113,7 @@ localStorage.setItem("transactiontype", "Residential")
 // calc.splitPayments(paymentSplit)
 
 },{"./calculations":1,"./templates":3}],3:[function(require,module,exports){
-function generalTemplate (general) {
+function generalTemplate (general = {}) {
   return `
   <h4> Transaction Details </h4>
   <!-- Required Fields  -->
@@ -114,7 +125,7 @@ function generalTemplate (general) {
           <div class="input-group-prepend">
             <span class="input-group-text">$</span>
           </div>
-          <input type="text" class="form-control" id="salesprice" aria-label="Amount (to the nearest dollar)">
+          <input type="text" class="form-control" id="salesprice" aria-label="Amount (to the nearest dollar)" value=${general.salesprice || ''}>
           <div class="input-group-append">
             <span class="input-group-text">.00</span>
           </div>
@@ -126,7 +137,7 @@ function generalTemplate (general) {
           <div class="input-group-prepend">
             <span class="input-group-text">$</span>
           </div>
-          <input type="text" class="form-control" id="loanamount" aria-label="Amount (to the nearest dollar)">
+          <input type="text" class="form-control" id="loanamount" aria-label="Amount (to the nearest dollar)" value=${general.loanamount || ''}>
           <div class="input-group-append">
             <span class="input-group-text">.00</span>
           </div>
