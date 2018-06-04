@@ -1,14 +1,3 @@
-// function generalTemplate (general) {
-//   return `
-//   <tr>
-//     <td>${general.title}</td>
-//     <td>${general.year}</td>
-//     <td>${general.score}</td>
-//     <td>${general.starring}</td>
-//   </tr>
-// `
-// }
-
 function generalTemplate (general) {
   return `
   <h4> Transaction Details </h4>
@@ -113,6 +102,20 @@ function generalTemplate (general) {
   `
 }
 
+function closingTemplate(closing) {
+  return `
+  <h1> Closing Page </h1>
+
+
+  `
+}
+
+function otherTemplate(other) {
+  return `
+  <h1> Other Page </h1>
+  `
+}
+
 function summaryTemplate (summary) {
   return `
   <table class="table table-responsive">
@@ -155,5 +158,7 @@ function summaryTemplate (summary) {
 
 module.exports = {
   summaryTemplate,
-  generalTemplate
+  generalTemplate,
+  closingTemplate,
+  otherTemplate
 }

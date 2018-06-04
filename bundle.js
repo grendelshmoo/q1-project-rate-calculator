@@ -28,6 +28,21 @@ function renderGeneral() {
 }
 renderGeneral()
 
+//Render the Closing Costs Pane
+function renderClosing() {
+  document.getElementById('generalpane').innerHTML = templates.closingTemplate()
+}
+
+//Render the Other pane
+function renderOther() {
+  document.getElementById('generalpane').innerHTML = templates.otherTemplate()
+}
+
+//Define tabs as variables
+const generalTab = document.getElementById('general-tab')
+const closingTab = document.getElementById('closing-tab')
+const otherTab = document.getElementById('other-tab')
+
 //Define required input variables.
 const salesPrice = document.getElementById('salesprice')
 const loanAmount = document.getElementById('loanamount')
@@ -50,6 +65,12 @@ function storeLocal(){
   localStorage.setItem(event.target.id, event.target.value)
 }
 
+//Event Listeners - tabs
+generalTab.addEventListener('click', renderGeneral)
+closingTab.addEventListener('click', renderClosing)
+otherTab.addEventListener('click', renderOther)
+
+
 // Event Listeners - Required
 salesPrice.addEventListener('keyup',storeLocal)
 loanAmount.addEventListener('keyup',storeLocal)
@@ -71,6 +92,7 @@ inputPreparedFor.addEventListener('keyup',storeLocal)
 
 
 
+
 // Local Storage defaults - NOTE this probably needs to be changed... may not allow state changes
 // Maybe make a "defaults" function included in the reset button?
 localStorage.setItem("inputstate", "Guam")
@@ -80,17 +102,6 @@ localStorage.setItem("transactiontype", "Residential")
 // calc.splitPayments(paymentSplit)
 
 },{"./calculations":1,"./templates":3}],3:[function(require,module,exports){
-// function generalTemplate (general) {
-//   return `
-//   <tr>
-//     <td>${general.title}</td>
-//     <td>${general.year}</td>
-//     <td>${general.score}</td>
-//     <td>${general.starring}</td>
-//   </tr>
-// `
-// }
-
 function generalTemplate (general) {
   return `
   <h4> Transaction Details </h4>
@@ -195,6 +206,20 @@ function generalTemplate (general) {
   `
 }
 
+function closingTemplate(closing) {
+  return `
+  <h1> Closing Page </h1>
+
+
+  `
+}
+
+function otherTemplate(other) {
+  return `
+  <h1> Other Page </h1>
+  `
+}
+
 function summaryTemplate (summary) {
   return `
   <table class="table table-responsive">
@@ -237,7 +262,9 @@ function summaryTemplate (summary) {
 
 module.exports = {
   summaryTemplate,
-  generalTemplate
+  generalTemplate,
+  closingTemplate,
+  otherTemplate
 }
 
 },{}]},{},[2]);

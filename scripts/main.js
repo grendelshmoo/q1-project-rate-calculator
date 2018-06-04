@@ -17,6 +17,21 @@ function renderGeneral() {
 }
 renderGeneral()
 
+//Render the Closing Costs Pane
+function renderClosing() {
+  document.getElementById('generalpane').innerHTML = templates.closingTemplate()
+}
+
+//Render the Other pane
+function renderOther() {
+  document.getElementById('generalpane').innerHTML = templates.otherTemplate()
+}
+
+//Define tabs as variables
+const generalTab = document.getElementById('general-tab')
+const closingTab = document.getElementById('closing-tab')
+const otherTab = document.getElementById('other-tab')
+
 //Define required input variables.
 const salesPrice = document.getElementById('salesprice')
 const loanAmount = document.getElementById('loanamount')
@@ -39,6 +54,12 @@ function storeLocal(){
   localStorage.setItem(event.target.id, event.target.value)
 }
 
+//Event Listeners - tabs
+generalTab.addEventListener('click', renderGeneral)
+closingTab.addEventListener('click', renderClosing)
+otherTab.addEventListener('click', renderOther)
+
+
 // Event Listeners - Required
 salesPrice.addEventListener('keyup',storeLocal)
 loanAmount.addEventListener('keyup',storeLocal)
@@ -54,6 +75,7 @@ inputZip.addEventListener('keyup',storeLocal)
 inputCompany.addEventListener('keyup',storeLocal)
 inputPreparedBy.addEventListener('keyup',storeLocal)
 inputPreparedFor.addEventListener('keyup',storeLocal)
+
 
 
 
