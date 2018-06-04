@@ -44,117 +44,10 @@
         <!-- End Tab Bar  -->
 
         <!-- Main Input Group Begin -->
-        <div class="constainer m-2 p-2" id="INSERTCONTENTHERE">
-          <h4> Transaction Details </h4>
-          <!-- Required Fields  -->
-          <form>
-            <div class="row">
-              <div class="col">
-                <span>Sales Price</span>
-                <div style="width:200px" class="input-group input-group-sm mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">$</span>
-                  </div>
-                  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                  <div class="input-group-append">
-                    <span class="input-group-text">.00</span>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <span>Loan Amount</span>
-                <div style="width:200px" class="input-group input-group-sm mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">$</span>
-                  </div>
-                  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                  <div class="input-group-append">
-                    <span class="input-group-text">.00</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </form>
-          <hr>
-          <!-- Property Info  -->
-          <h4>Property Information</h4>
-          <form>
-            <div class="form-group input-group-sm">
-              <label for="inputAddress">Address</label>
-              <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-            </div>
-            <div class="form-group input-group-sm">
-              <label for="inputAddress2">Address 2</label>
-              <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-            </div>
-            <div class="form-row">
-              <div class="form-group input-group-sm col-md-6">
-                <label for="inputCity">City/Village</label>
-                <input type="text" class="form-control" id="inputCity">
-              </div>
-              <div class="form-group input-group-sm col-md-4">
-                <label for="inputState">State/Territory</label>
-                <select id="inputState" class="form-control">
-        <option selected>Guam</option>
-        <option>CNMI</option>
-      </select>
-              </div>
-              <div class="form-group input-group-sm col-md-2">
-                <label for="inputZip">Zip</label>
-                <input type="text" class="form-control" id="inputZip">
-              </div>
-            </div>
-          </form>
-          <hr>
-          <!-- Buyer/Borrower Info & General  -->
-          <form>
-            <div class="row">
-              <div class="col">
-                <h4>Buyer/Borrower Information</h4> Please select who pays
-                <select class="custom-select input-group-sm mr-sm-2" id="inlineFormCustomSelect">
-                  <option selected value="buyerBorrowerSplit">Buyer/Borrower Split</option>
-                  <option value="BuyerPaysAll">Buyer Pays All</option>
-                  <option value="BorrowerPaysAll">Borrower Pays All</option>
-                </select>
-                <!-- <span>Sales Price</span>
-              <div style="width:200px" class="input-group input-group-sm mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">$</span>
-                </div>
-                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                <div class="input-group-append">
-                  <span class="input-group-text">.00</span>
-                </div>
-              </div> -->
-              </div>
-              <div class="col">
-                <h4>General Information</h4> Company
-                <div class="input-group input-group-sm mb-3">
-                  <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                </div>
-                Prepared by
-                <div class="input-group input-group-sm mb-3">
-                  <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                </div>
-                Prepared for
-                <div class="input-group input-group-sm mb-3">
-                  <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                </div>
-                <!-- <span>Loan Amount</span>
-              <div style="width:200px" class="input-group input-group-sm mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">$</span>
-                </div>
-                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                <div class="input-group-append">
-                  <span class="input-group-text">.00</span>
-                </div>
-              </div> -->
-              </div>
-            </div>
-          </form>
+        <div class="constainer m-2 p-2" id="generalPane">
 
 
+<!-- Render generalTemplate Here -->
 
 
         </div>
@@ -167,43 +60,14 @@
         <span class="summaryBox">Summary</span>
 
         <!-- Start Summary Table (to be replaced with Template) -->
-        <div class="container m-2 p-2" id="INSERTCALCULATIONSHERE">
-          <table class="table table-responsive">
-            <thead>
-              <tr>
-                <th scope="col"></th>
-                <th scope="col">Buyer</th>
-                <th scope="col">Seller</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
+        <div class="container container-responsive m-2 p-2" id="summaryPane">
 
-                <td>Title Fee:</td>
-                <td>$0</td>
-                <td>$0</td>
-              </tr>
-              <tr>
+          <!-- Render summaryTemplate Here  -->
 
-                <td>Escrow Fee:</td>
-                <td>$0</td>
-                <td>$0</td>
-              </tr>
-              <tr>
-                <td>Recording Fee:</td>
-                <td>$0</td>
-                <td>$0</td>
-              </tr>
-
-              <tr class="font-weight-bold">
-                <td>Total:</td>
-                <td>$0</td>
-                <td>$0</td>
-              </tr>
-            </tbody>
-          </table>
         </div>
         <!-- End Summary Table  -->
+
+
 
         <!-- Sales & Loan field Validation Begin -->
 
