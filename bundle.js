@@ -73,7 +73,13 @@ const inputPreparedFor = document.getElementById('inputpreparedfor')
 
 //Store data in local storage
 function storeLocal(){
-  localStorage.setItem(event.target.id, event.target.value)
+  //localStorage.setItem(event.target.id, event.target.value)
+
+
+//NOTE - Work on this below... need to get your read write of event.target.id and values right
+
+//  localStorage.setItem("general",JSON.stringify({event.target.id: event.target.value})
+
 }
 
 //Event Listeners - tabs
@@ -106,9 +112,18 @@ inputPreparedFor.addEventListener('keyup',storeLocal)
 
 // Local Storage defaults - NOTE this probably needs to be changed... may not allow state changes
 // Maybe make a "defaults" function included in the reset button?
-localStorage.setItem("inputstate", "Guam")
-localStorage.setItem("paymentsplit", "buyerBorrowerSplit")
-localStorage.setItem("transactiontype", "Residential")
+
+//Newest way... in the templates as default.
+
+// New way, into object
+// localStorage.setItem("general",JSON.stringify({"inputstate": "Guam"})
+// localStorage.setItem("general",JSON.stringify({"paymentsplit": "buyerBorrowerSplit"})
+// localStorage.setItem("general",JSON.stringify({"transactiontype": "Residential"})
+
+// Old way, into individual items:
+// localStorage.setItem("inputstate", "Guam")
+// localStorage.setItem("paymentsplit", "buyerBorrowerSplit")
+// localStorage.setItem("transactiontype", "Residential")
 
 // calc.splitPayments(paymentSplit)
 
@@ -164,7 +179,7 @@ function generalTemplate (general = {}) {
       </div>
       <div class="form-group input-group-sm col-md-4">
         <label for="inputState">State/Territory</label>
-        <select id="inputstate" class="form-control">
+        <select id="inputstate" class="form-control" value=${general.inputstate || 'Guam'}>
 <option selected>Guam</option>
 <option>CNMI</option>
 </select>

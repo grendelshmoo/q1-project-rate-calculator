@@ -49,7 +49,7 @@ function generalTemplate (general = {}) {
       </div>
       <div class="form-group input-group-sm col-md-4">
         <label for="inputState">State/Territory</label>
-        <select id="inputstate" class="form-control">
+        <select id="inputstate" class="form-control" value=${general.inputstate || 'Guam'}>
 <option selected>Guam</option>
 <option>CNMI</option>
 </select>
