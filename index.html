@@ -9,6 +9,7 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
   <!-- Import Local Resources  -->
   <link rel="stylesheet" href="styles/main.css">
@@ -18,51 +19,205 @@
 
 <body>
   <div class="container bg-white">
-    <div class="row align-items-center bg-warning">
+    <div class="row align-items-center">
 
-<!-- Left hand column begin  -->
-        <div class="col bg-light m-2 align-self-stretch border border-dark rounded">
-          <!-- Begin Tab Nav Bar  -->
-                  <ul class="nav nav-tabs" id="tabSelector" role="tablist">
-                    <li class="nav-item">
-                      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#requiredinfo" role="tab" aria-controls="requiredinfo" aria-selected="true">Required Info</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#closingcosts" role="tab" aria-controls="closingcosts" aria-selected="false">Closing Costs</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" id="contact-tab" data-toggle="tab" href="#otherfields" role="tab" aria-controls="otherfields" aria-selected="false">Other</a>
-                    </li>
-                  </ul>
+      <!-- Left hand column begin  -->
+      <div class="col px-0 bg-light m-2 align-self-stretch border border-dark rounded">
+        <!-- Begin Tab Nav Bar  -->
+        <ul class="nav nav-tabs" id="tabSelector" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#requiredinfo" role="tab" aria-controls="requiredinfo" aria-selected="true">General</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#closingcosts" role="tab" aria-controls="closingcosts" aria-selected="false">Closing Costs</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#otherfields" role="tab" aria-controls="otherfields" aria-selected="false">Other</a>
+          </li>
+        </ul>
 
-                  <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="requiredinfo" role="tabpanel" aria-labelledby="requiredinfo-tab"></div>
-                    <div class="tab-pane fade" id="closingcosts" role="tabpanel" aria-labelledby="closingcosts-tab"></div>
-                    <div class="tab-pane fade" id="otherfields" role="tabpanel" aria-labelledby="otherfields-tab"></div>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="requiredinfo" role="tabpanel" aria-labelledby="requiredinfo-tab"></div>
+          <div class="tab-pane fade" id="closingcosts" role="tabpanel" aria-labelledby="closingcosts-tab"></div>
+          <div class="tab-pane fade" id="otherfields" role="tabpanel" aria-labelledby="otherfields-tab"></div>
+        </div>
+        <!-- End Tab Bar  -->
+
+        <!-- Main Input Group Begin -->
+        <div class="constainer m-2 p-2" id="INSERTCONTENTHERE">
+          <h4> Transaction Details </h4>
+          <!-- Required Fields  -->
+          <form>
+            <div class="row">
+              <div class="col">
+                <span>Sales Price</span>
+                <div style="width:200px" class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">$</span>
                   </div>
-          <!-- End Tab Bar  -->
-            <p>Well, the way they make shows is, they make one show. That show's called a pilot. Then they show that show to the people who make shows, and on the strength of that one show they decide if they're going to make more shows. Some pilots get picked and become television programs. Some don't, become nothing. She starred in one of the ones that became nothing. </p>
+                  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                  <div class="input-group-append">
+                    <span class="input-group-text">.00</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <span>Loan Amount</span>
+                <div style="width:200px" class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">$</span>
+                  </div>
+                  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                  <div class="input-group-append">
+                    <span class="input-group-text">.00</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+          <hr>
+          <!-- Property Info  -->
+          <h4>Property Information</h4>
+          <form>
+            <div class="form-group input-group-sm">
+              <label for="inputAddress">Address</label>
+              <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+            </div>
+            <div class="form-group input-group-sm">
+              <label for="inputAddress2">Address 2</label>
+              <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+            </div>
+            <div class="form-row">
+              <div class="form-group input-group-sm col-md-6">
+                <label for="inputCity">City/Village</label>
+                <input type="text" class="form-control" id="inputCity">
+              </div>
+              <div class="form-group input-group-sm col-md-4">
+                <label for="inputState">State/Territory</label>
+                <select id="inputState" class="form-control">
+        <option selected>Guam</option>
+        <option>CNMI</option>
+      </select>
+              </div>
+              <div class="form-group input-group-sm col-md-2">
+                <label for="inputZip">Zip</label>
+                <input type="text" class="form-control" id="inputZip">
+              </div>
+            </div>
+          </form>
+          <hr>
+          <!-- Buyer/Borrower Info & General  -->
+          <form>
+            <div class="row">
+              <div class="col">
+                <h4>Buyer/Borrower Information</h4> Please select who pays
+                <select class="custom-select input-group-sm mr-sm-2" id="inlineFormCustomSelect">
+                  <option selected value="buyerBorrowerSplit">Buyer/Borrower Split</option>
+                  <option value="BuyerPaysAll">Buyer Pays All</option>
+                  <option value="BorrowerPaysAll">Borrower Pays All</option>
+                </select>
+                <!-- <span>Sales Price</span>
+              <div style="width:200px" class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">$</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <div class="input-group-append">
+                  <span class="input-group-text">.00</span>
+                </div>
+              </div> -->
+              </div>
+              <div class="col">
+                <h4>General Information</h4> Company
+                <div class="input-group input-group-sm mb-3">
+                  <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                </div>
+                Prepared by
+                <div class="input-group input-group-sm mb-3">
+                  <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                </div>
+                Prepared for
+                <div class="input-group input-group-sm mb-3">
+                  <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                </div>
+                <!-- <span>Loan Amount</span>
+              <div style="width:200px" class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">$</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <div class="input-group-append">
+                  <span class="input-group-text">.00</span>
+                </div>
+              </div> -->
+              </div>
+            </div>
+          </form>
+
+
+
 
         </div>
-<!-- Left hand column end  -->
+        <!-- End Main Input Group -->
+      </div>
+      <!-- Left hand column end  -->
 
-<!-- Right hand column begin  -->
-        <div class="col-4 bg-light m-2 border border-primary rounded">
+      <!-- Right hand column begin  -->
+      <div class="col-4 bg-light m-2 px-0 align-self-stretch border border-primary rounded">
+        <span class="summaryBox">Summary</span>
 
-          <!-- Begin Summary Nav Bar  -->
-          <!-- <ul class="nav bg-primary" id="summary" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link " id="summary-tab" data-toggle="tab" href="#summary" role="tab" aria-controls="summary" aria-selected="true">Summary</a>
-            </li>
-          </ul> -->
+        <!-- Start Summary Table (to be replaced with Template) -->
+        <div class="container m-2 p-2" id="INSERTCALCULATIONSHERE">
+          <table class="table table-responsive">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Buyer</th>
+                <th scope="col">Seller</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
 
-          <span class="summaryBox">Summary</span>
+                <td>Title Fee:</td>
+                <td>$0</td>
+                <td>$0</td>
+              </tr>
+              <tr>
 
-          <!-- End Summary Nav Bar   -->
-          <p>Your bones don't break, mine do. That's clear. Your cells react to bacteria and viruses differently than mine. You don't get sick, I do. That's also clear. But for some reason, you and I react the exact same way to water. We swallow it too fast, we choke. We get some in our lungs, we drown. However unreal it may seem, we are connected, you and I. We're on the same curve, just on opposite ends.</p>
+                <td>Escrow Fee:</td>
+                <td>$0</td>
+                <td>$0</td>
+              </tr>
+              <tr>
+                <td>Recording Fee:</td>
+                <td>$0</td>
+                <td>$0</td>
+              </tr>
 
+              <tr class="font-weight-bold">
+                <td>Total:</td>
+                <td>$0</td>
+                <td>$0</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-<!-- Right hand column end  -->
+        <!-- End Summary Table  -->
+
+        <!-- Sales & Loan field Validation Begin -->
+
+        <div class="alert alert-danger m-2 p-2" role="alert">
+          <i class="fas fa-exclamation-circle"></i> Sales Price & Loan Amount are Required.
+        </div>
+
+
+        <hr>
+        <!-- End Sales & Loan field Validation  -->
+        <button type="button" style="width:100px" class="btn btn-danger btn-block mx-auto"><i class="fas fa-trash-alt"></i> Reset</button>
+
+      </div>
+      <!-- Right hand column end  -->
 
 
     </div>
