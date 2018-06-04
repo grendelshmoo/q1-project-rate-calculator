@@ -33,7 +33,7 @@ function generalTemplate (general) {
           <div class="input-group-prepend">
             <span class="input-group-text">$</span>
           </div>
-          <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+          <input type="text" class="form-control" id="loanamount" aria-label="Amount (to the nearest dollar)">
           <div class="input-group-append">
             <span class="input-group-text">.00</span>
           </div>
@@ -80,7 +80,7 @@ function generalTemplate (general) {
         <select class="custom-select input-group-sm mr-sm-2 mb-3" id="payer">
           <option selected value="buyerBorrowerSplit">Buyer/Borrower Split</option>
           <option value="BuyerPaysAll">Buyer Pays All</option>
-          <option value="BorrowerPaysAll">Borrower Pays All</optio
+          <option value="BorrowerPaysAll">Borrower Pays All</option>
         </select>
             <hr>
         <h5> Type of Transaction</h5>

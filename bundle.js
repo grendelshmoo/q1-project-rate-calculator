@@ -2,14 +2,7 @@
 //Import data & templates
 // const data = require('./data')
 const templates = require('./templates')
-const salesPrice = document.getElementById('salesprice')
 
-//Define input variables.
-
-// const loanAmount
-// const state
-// const paymentSplit
-// const transactionType
 
 
 //Render the Summary Column
@@ -25,14 +18,24 @@ function renderGeneral() {
 }
 renderGeneral()
 
-//Store data in local storage
+//Define input variables.
+const salesPrice = document.getElementById('salesprice')
+const loanAmount = document.getElementById('loanamount')
+// const state
+// const paymentSplit
+// const transactionType
 
+
+//Store data in local storage
 function storeLocal(){
-  console.log(salesPrice)
+  // console.log(salesPrice.id)
+  // console.log(salesPrice.value)
+  // console.log(event.target.id)
 }
 
 //On Input Event Listener for Sales Price
-salesPrice.addEventListener('input',storeLocal)
+salesPrice.addEventListener('keyup',storeLocal)
+loanAmount.addEventListener('keyup',storeLocal)
 
 
 //On Input Event Listener for Loan Amount
@@ -73,7 +76,7 @@ function generalTemplate (general) {
           <div class="input-group-prepend">
             <span class="input-group-text">$</span>
           </div>
-          <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+          <input type="text" class="form-control" id="loanamount" aria-label="Amount (to the nearest dollar)">
           <div class="input-group-append">
             <span class="input-group-text">.00</span>
           </div>
@@ -120,7 +123,7 @@ function generalTemplate (general) {
         <select class="custom-select input-group-sm mr-sm-2 mb-3" id="payer">
           <option selected value="buyerBorrowerSplit">Buyer/Borrower Split</option>
           <option value="BuyerPaysAll">Buyer Pays All</option>
-          <option value="BorrowerPaysAll">Borrower Pays All</optio
+          <option value="BorrowerPaysAll">Borrower Pays All</option>
         </select>
             <hr>
         <h5> Type of Transaction</h5>

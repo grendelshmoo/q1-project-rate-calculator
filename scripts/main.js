@@ -1,14 +1,7 @@
 //Import data & templates
 // const data = require('./data')
 const templates = require('./templates')
-const salesPrice = document.getElementById('salesprice')
 
-//Define input variables.
-
-// const loanAmount
-// const state
-// const paymentSplit
-// const transactionType
 
 
 //Render the Summary Column
@@ -24,14 +17,24 @@ function renderGeneral() {
 }
 renderGeneral()
 
-//Store data in local storage
+//Define input variables.
+const salesPrice = document.getElementById('salesprice')
+const loanAmount = document.getElementById('loanamount')
+// const state
+// const paymentSplit
+// const transactionType
 
+
+//Store data in local storage
 function storeLocal(){
-  console.log(salesPrice)
+  // console.log(salesPrice.id)
+  // console.log(salesPrice.value)
+  // console.log(event.target.id)
 }
 
 //On Input Event Listener for Sales Price
-salesPrice.addEventListener('input',storeLocal)
+salesPrice.addEventListener('keyup',storeLocal)
+loanAmount.addEventListener('keyup',storeLocal)
 
 
 //On Input Event Listener for Loan Amount
