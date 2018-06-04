@@ -1,22 +1,39 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+//Import data & templates
 // const data = require('./data')
 const templates = require('./templates')
+const salesPrice = document.getElementById('salesprice')
+
+//Define input variables.
+
+// const loanAmount
+// const state
+// const paymentSplit
+// const transactionType
 
 
 //Render the Summary Column
 function renderSummary () {
-  document.getElementById('summaryPane').innerHTML = templates.summaryTemplate()
+  document.getElementById('summarypane').innerHTML = templates.summaryTemplate()
 }
 renderSummary()
 
 
 //Render the General Pane
 function renderGeneral() {
-  document.getElementById('generalPane').innerHTML = templates.generalTemplate()
+  document.getElementById('generalpane').innerHTML = templates.generalTemplate()
 }
 renderGeneral()
 
+//Store data in local storage
+
+function storeLocal(){
+  console.log(salesPrice)
+}
+
 //On Input Event Listener for Sales Price
+salesPrice.addEventListener('input',storeLocal)
+
 
 //On Input Event Listener for Loan Amount
 
@@ -44,7 +61,7 @@ function generalTemplate (general) {
           <div class="input-group-prepend">
             <span class="input-group-text">$</span>
           </div>
-          <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" >
+          <input type="text" class="form-control" id="salesprice" aria-label="Amount (to the nearest dollar)">
           <div class="input-group-append">
             <span class="input-group-text">.00</span>
           </div>
@@ -70,27 +87,27 @@ function generalTemplate (general) {
   <form>
     <div class="form-group input-group-sm">
       <label for="inputAddress">Address</label>
-      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+      <input type="text" class="form-control" id="inputaddress" placeholder="1234 Main St">
     </div>
     <div class="form-group input-group-sm">
       <label for="inputAddress2">Address 2</label>
-      <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+      <input type="text" class="form-control" id="inputaddress2" placeholder="Apartment, studio, or floor">
     </div>
     <div class="form-row">
       <div class="form-group input-group-sm col-md-6">
         <label for="inputCity">City/Village</label>
-        <input type="text" class="form-control" id="inputCity">
+        <input type="text" class="form-control" id="inputcity">
       </div>
       <div class="form-group input-group-sm col-md-4">
         <label for="inputState">State/Territory</label>
-        <select id="inputState" class="form-control">
+        <select id="inputstate" class="form-control">
 <option selected>Guam</option>
 <option>CNMI</option>
 </select>
       </div>
       <div class="form-group input-group-sm col-md-2">
         <label for="inputZip">Zip</label>
-        <input type="text" class="form-control" id="inputZip">
+        <input type="text" class="form-control" id="inputzip">
       </div>
     </div>
   </form>
@@ -103,11 +120,11 @@ function generalTemplate (general) {
         <select class="custom-select input-group-sm mr-sm-2 mb-3" id="payer">
           <option selected value="buyerBorrowerSplit">Buyer/Borrower Split</option>
           <option value="BuyerPaysAll">Buyer Pays All</option>
-          <option value="BorrowerPaysAll">Borrower Pays All</option>
+          <option value="BorrowerPaysAll">Borrower Pays All</optio
         </select>
             <hr>
         <h5> Type of Transaction</h5>
-        <select class="custom-select input-group-sm mr-sm-2 mb-3" id="transactionType">
+        <select class="custom-select input-group-sm mr-sm-2 mb-3" id="transactiontype">
           <option selected value="Residential">Residential</option>
           <option value="Commercial">Commercial</option>
         </select>
