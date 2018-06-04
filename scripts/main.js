@@ -3,7 +3,6 @@
 const templates = require('./templates')
 
 
-
 //Render the Summary Column
 function renderSummary () {
   document.getElementById('summarypane').innerHTML = templates.summaryTemplate()
@@ -20,21 +19,24 @@ renderGeneral()
 //Define input variables.
 const salesPrice = document.getElementById('salesprice')
 const loanAmount = document.getElementById('loanamount')
-// const state
-// const paymentSplit
-// const transactionType
+const inputState = document.getElementById('inputstate')
+const paymentSplit = document.getElementById('paymentsplit')
+const transactionType = document.getElementById('transactiontype')
 
 
 //Store data in local storage
 function storeLocal(){
-  // console.log(salesPrice.id)
-  // console.log(salesPrice.value)
-  // console.log(event.target.id)
+  localStorage.setItem(event.target.id, event.target.value)
 }
 
-//On Input Event Listener for Sales Price
+// Event Listeners
 salesPrice.addEventListener('keyup',storeLocal)
 loanAmount.addEventListener('keyup',storeLocal)
+inputState.addEventListener('change',storeLocal)
+paymentSplit.addEventListener('change',storeLocal)
+transactionType.addEventListener('change',storeLocal)
 
-
-//On Input Event Listener for Loan Amount
+// Local Storage defaults - NOTE this probably needs to be changed... may not allow state changes
+localStorage.setItem("inputstate", "Guam")
+localStorage.setItem("paymentsplit", "buyerBorrowerSplit")
+localStorage.setItem("transactiontype", "Residential")

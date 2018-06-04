@@ -77,7 +77,7 @@ function generalTemplate (general) {
     <div class="row">
       <div class="col">
         <h5>Buyer/Borrower Information</h5> Please select who pays
-        <select class="custom-select input-group-sm mr-sm-2 mb-3" id="payer">
+        <select class="custom-select input-group-sm mr-sm-2 mb-3" id="paymentsplit">
           <option selected value="buyerBorrowerSplit">Buyer/Borrower Split</option>
           <option value="BuyerPaysAll">Buyer Pays All</option>
           <option value="BorrowerPaysAll">Borrower Pays All</option>
