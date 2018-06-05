@@ -1,4 +1,5 @@
 function generalTemplate (general = {}) {
+  // console.log(general.inputaddress)
   return `
   <h4> Transaction Details </h4>
   <!-- Required Fields  -->
@@ -36,27 +37,27 @@ function generalTemplate (general = {}) {
   <form>
     <div class="form-group input-group-sm">
       <label for="inputAddress">Address</label>
-      <input type="text" class="form-control" id="inputaddress" placeholder="1234 Main St">
+      <input type="text" class="form-control" id="inputaddress" placeholder="1234 Main St" value=${general.inputaddress || ''}>
     </div>
     <div class="form-group input-group-sm">
       <label for="inputAddress2">Address 2</label>
-      <input type="text" class="form-control" id="inputaddress2" placeholder="Apartment, studio, or floor">
+      <input type="text" class="form-control" id="inputaddress2" placeholder="Apartment, studio, or floor" value=${general.inputaddress2 || ''}>
     </div>
     <div class="form-row">
       <div class="form-group input-group-sm col-md-6">
         <label for="inputCity">City/Village</label>
-        <input type="text" class="form-control" id="inputcity">
+        <input type="text" class="form-control" id="inputcity" value=${general.inputcity || ''}>
       </div>
       <div class="form-group input-group-sm col-md-4">
         <label for="inputState">State/Territory</label>
-        <select id="inputstate" class="form-control" value=${general.inputstate || 'Guam'}>
-<option selected>Guam</option>
-<option>CNMI</option>
+        <select id="inputstate" class="form-control" value=${general.inputstate || 'CNMI'}>
+<option value="Guam">Guam</option>
+<option value="CNMI">CNMI</option>
 </select>
       </div>
       <div class="form-group input-group-sm col-md-2">
         <label for="inputZip">Zip</label>
-        <input type="text" class="form-control" id="inputzip">
+        <input type="text" class="form-control" id="inputzip" value=${general.inputzip || ''}>
       </div>
     </div>
   </form>
@@ -66,34 +67,31 @@ function generalTemplate (general = {}) {
     <div class="row">
       <div class="col">
         <h5>Buyer/Borrower Information</h5> Please select who pays
-        <select class="custom-select input-group-sm mr-sm-2 mb-3" id="paymentsplit">
+        <select class="custom-select input-group-sm mr-sm-2 mb-3" id="paymentsplit" value=${general.paymentsplit || 'buyerBorrowerSplit'}>
           <option selected value="buyerBorrowerSplit">Buyer/Borrower Split</option>
           <option value="BuyerPaysAll">Buyer Pays All</option>
           <option value="BorrowerPaysAll">Borrower Pays All</option>
         </select>
             <hr>
         <h5> Type of Transaction</h5>
-        <select class="custom-select input-group-sm mr-sm-2 mb-3" id="transactiontype">
+        <select class="custom-select input-group-sm mr-sm-2 mb-3" id="transactiontype" value=${general.transactiontype || 'Residential'}>
           <option selected value="Residential">Residential</option>
           <option value="Commercial">Commercial</option>
         </select>
-
-
-
 
       </div>
       <div class="col">
         <h5>General Information</h5> Company
         <div class="input-group input-group-sm mb-3">
-          <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="inputcompany">
+          <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="inputcompany" value=${general.inputcompany || ''}>
         </div>
         Prepared by
         <div class="input-group input-group-sm mb-3">
-          <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="inputpreparedby">
+          <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="inputpreparedby" value=${general.inputpreparedby || ''}>
         </div>
         Prepared for
         <div class="input-group input-group-sm mb-3">
-          <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="inputpreparedfor">
+          <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="inputpreparedfor" value=${general.inputpreparedfor || ''}>
         </div>
       </div>
     </div>
@@ -147,8 +145,8 @@ function summaryTemplate (summary) {
 
       <tr class="font-weight-bold">
         <td>Total:</td>
-        <td>$0</td>
-        <td>$0</td>
+        <td>\$${summary.buyerTotal || '0'}</td>
+        <td>\$${summary.sellerTotal || '0'}</td>
       </tr>
     </tbody>
   </table>

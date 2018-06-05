@@ -11,11 +11,7 @@ const calc = require('./calculations')
 // localStorage.setItem('other', JSON.stringify({}))
 
 
-//Render the Summary Column
-function renderSummary() {
-  document.getElementById('summarypane').innerHTML = templates.summaryTemplate()
-}
-renderSummary()
+
 
 //Render the General Pane
 
@@ -43,7 +39,7 @@ function renderClosing() {
   document.getElementById('generalpane').innerHTML = templates.closingTemplate()
 }
 
-//Render the Other pane
+//Render the Other pane - To be implemented later.
 function renderOther() {
   document.getElementById('generalpane').innerHTML = templates.otherTemplate()
 }
@@ -87,6 +83,7 @@ function storeLocal(event) {
 
   generalState[event.target.id] = event.target.value
   localStorage.setItem('general', JSON.stringify(generalState))
+  renderSummary()
 
 }
 
@@ -94,14 +91,20 @@ function storeLocal(event) {
 // Reset Button
 function resetLocal() {
   localStorage.clear()
+
+  // NOTE - Why doesn't this work to initialize an empty object in local storage?
+  // localStorage.setItem('general', JSON.stringify({})
+
   renderGeneral()
+  renderSummary()
+
 }
 
 
 //Event Listeners - tabs
 generalTab.addEventListener('click', renderGeneral)
 closingTab.addEventListener('click', renderClosing)
-otherTab.addEventListener('click', renderOther)
+//otherTab.addEventListener('click', renderOther)   --> To be added later.
 
 
 // Event Listeners - Required
@@ -146,3 +149,11 @@ resetButton.addEventListener('click', resetLocal)
 // localStorage.setItem("transactiontype", "Residential")
 
 // calc.splitPayments(paymentSplit)
+
+
+//Render the Summary Column
+function renderSummary() {
+  let summaryTotal = calc.total(salesPrice, loanAmount)
+  document.getElementById('summarypane').innerHTML = templates.summaryTemplate(summaryTotal)
+}
+renderSummary()

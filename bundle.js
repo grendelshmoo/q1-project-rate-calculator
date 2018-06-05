@@ -1,12 +1,25 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
-function splitPayments(element) {
-//  console.log(element.value)
+const resultTable = {}
 
+function total(a, b) {
+a = parseInt(a.value.replace(/,/g, ""))
+b = parseInt(b.value.replace(/,/g, ""))
+
+let result = (a+b)/2
+resultTable['buyerTotal'] = result
+resultTable['sellerTotal'] = result
+
+return resultTable
 }
 
 module.exports = {
-  splitPayments
+  total,
+  resultTable
 }
+
+
+// const resultTable = function () { all calculation functions?  }
+// return resultTable
 
 },{}],2:[function(require,module,exports){
 //Import data & templates
@@ -22,11 +35,7 @@ const calc = require('./calculations')
 // localStorage.setItem('other', JSON.stringify({}))
 
 
-//Render the Summary Column
-function renderSummary() {
-  document.getElementById('summarypane').innerHTML = templates.summaryTemplate()
-}
-renderSummary()
+
 
 //Render the General Pane
 
@@ -54,7 +63,7 @@ function renderClosing() {
   document.getElementById('generalpane').innerHTML = templates.closingTemplate()
 }
 
-//Render the Other pane
+//Render the Other pane - To be implemented later.
 function renderOther() {
   document.getElementById('generalpane').innerHTML = templates.otherTemplate()
 }
@@ -98,6 +107,7 @@ function storeLocal(event) {
 
   generalState[event.target.id] = event.target.value
   localStorage.setItem('general', JSON.stringify(generalState))
+  renderSummary()
 
 }
 
@@ -105,14 +115,20 @@ function storeLocal(event) {
 // Reset Button
 function resetLocal() {
   localStorage.clear()
+
+  // NOTE - Why doesn't this work to initialize an empty object in local storage?
+  // localStorage.setItem('general', JSON.stringify({})
+
   renderGeneral()
+  renderSummary()
+
 }
 
 
 //Event Listeners - tabs
 generalTab.addEventListener('click', renderGeneral)
 closingTab.addEventListener('click', renderClosing)
-otherTab.addEventListener('click', renderOther)
+//otherTab.addEventListener('click', renderOther)   --> To be added later.
 
 
 // Event Listeners - Required
@@ -158,8 +174,17 @@ resetButton.addEventListener('click', resetLocal)
 
 // calc.splitPayments(paymentSplit)
 
+
+//Render the Summary Column
+function renderSummary() {
+  let summaryTotal = calc.total(salesPrice, loanAmount)
+  document.getElementById('summarypane').innerHTML = templates.summaryTemplate(summaryTotal)
+}
+renderSummary()
+
 },{"./calculations":1,"./templates":3}],3:[function(require,module,exports){
 function generalTemplate (general = {}) {
+  // console.log(general.inputaddress)
   return `
   <h4> Transaction Details </h4>
   <!-- Required Fields  -->
@@ -197,27 +222,27 @@ function generalTemplate (general = {}) {
   <form>
     <div class="form-group input-group-sm">
       <label for="inputAddress">Address</label>
-      <input type="text" class="form-control" id="inputaddress" placeholder="1234 Main St">
+      <input type="text" class="form-control" id="inputaddress" placeholder="1234 Main St" value=${general.inputaddress || ''}>
     </div>
     <div class="form-group input-group-sm">
       <label for="inputAddress2">Address 2</label>
-      <input type="text" class="form-control" id="inputaddress2" placeholder="Apartment, studio, or floor">
+      <input type="text" class="form-control" id="inputaddress2" placeholder="Apartment, studio, or floor" value=${general.inputaddress2 || ''}>
     </div>
     <div class="form-row">
       <div class="form-group input-group-sm col-md-6">
         <label for="inputCity">City/Village</label>
-        <input type="text" class="form-control" id="inputcity">
+        <input type="text" class="form-control" id="inputcity" value=${general.inputcity || ''}>
       </div>
       <div class="form-group input-group-sm col-md-4">
         <label for="inputState">State/Territory</label>
-        <select id="inputstate" class="form-control" value=${general.inputstate || 'Guam'}>
-<option selected>Guam</option>
-<option>CNMI</option>
+        <select id="inputstate" class="form-control" value=${general.inputstate || 'CNMI'}>
+<option value="Guam">Guam</option>
+<option value="CNMI">CNMI</option>
 </select>
       </div>
       <div class="form-group input-group-sm col-md-2">
         <label for="inputZip">Zip</label>
-        <input type="text" class="form-control" id="inputzip">
+        <input type="text" class="form-control" id="inputzip" value=${general.inputzip || ''}>
       </div>
     </div>
   </form>
@@ -227,34 +252,31 @@ function generalTemplate (general = {}) {
     <div class="row">
       <div class="col">
         <h5>Buyer/Borrower Information</h5> Please select who pays
-        <select class="custom-select input-group-sm mr-sm-2 mb-3" id="paymentsplit">
+        <select class="custom-select input-group-sm mr-sm-2 mb-3" id="paymentsplit" value=${general.paymentsplit || 'buyerBorrowerSplit'}>
           <option selected value="buyerBorrowerSplit">Buyer/Borrower Split</option>
           <option value="BuyerPaysAll">Buyer Pays All</option>
           <option value="BorrowerPaysAll">Borrower Pays All</option>
         </select>
             <hr>
         <h5> Type of Transaction</h5>
-        <select class="custom-select input-group-sm mr-sm-2 mb-3" id="transactiontype">
+        <select class="custom-select input-group-sm mr-sm-2 mb-3" id="transactiontype" value=${general.transactiontype || 'Residential'}>
           <option selected value="Residential">Residential</option>
           <option value="Commercial">Commercial</option>
         </select>
-
-
-
 
       </div>
       <div class="col">
         <h5>General Information</h5> Company
         <div class="input-group input-group-sm mb-3">
-          <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="inputcompany">
+          <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="inputcompany" value=${general.inputcompany || ''}>
         </div>
         Prepared by
         <div class="input-group input-group-sm mb-3">
-          <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="inputpreparedby">
+          <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="inputpreparedby" value=${general.inputpreparedby || ''}>
         </div>
         Prepared for
         <div class="input-group input-group-sm mb-3">
-          <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="inputpreparedfor">
+          <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="inputpreparedfor" value=${general.inputpreparedfor || ''}>
         </div>
       </div>
     </div>
@@ -308,8 +330,8 @@ function summaryTemplate (summary) {
 
       <tr class="font-weight-bold">
         <td>Total:</td>
-        <td>$0</td>
-        <td>$0</td>
+        <td>\$${summary.buyerTotal || '0'}</td>
+        <td>\$${summary.sellerTotal || '0'}</td>
       </tr>
     </tbody>
   </table>
