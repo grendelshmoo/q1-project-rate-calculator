@@ -102,7 +102,7 @@ function generalTemplate (general = {}) {
   `
 }
 
-function closingTemplate(closing) {
+function closingTemplate (closing) {
   return `
   <h1> Closing Page </h1>
 
@@ -110,7 +110,7 @@ function closingTemplate(closing) {
   `
 }
 
-function otherTemplate(other) {
+function otherTemplate (other) {
   return `
   <h1> Other Page </h1>
   `

@@ -3,9 +3,16 @@
 const templates = require('./templates')
 const calc = require('./calculations')
 
+// Initialize local storage with empty objects for tab state controls
+// if .getItem general returns anything then don't zero.  For each tab.
+
+// localStorage.setItem('general', JSON.stringify({}))
+// localStorage.setItem('closing', JSON.stringify({}))
+// localStorage.setItem('other', JSON.stringify({}))
+
 
 //Render the Summary Column
-function renderSummary () {
+function renderSummary() {
   document.getElementById('summarypane').innerHTML = templates.summaryTemplate()
 }
 renderSummary()
@@ -13,10 +20,13 @@ renderSummary()
 //Render the General Pane
 
 function renderGeneral() {
-  var state = localStorage.getItem('general')
-  JSON.parse(state)
+  var state = JSON.parse(localStorage.getItem('general'))
 
-  if (state) {
+  // state && (Object.hasOwnKey.general.salesprice)
+  // console.log(state)
+
+  if (state && state.hasOwnProperty('salesprice')) {
+
     document.getElementById('generalpane').innerHTML = templates.generalTemplate(state)
 
   } else {
@@ -51,7 +61,6 @@ const paymentSplit = document.getElementById('paymentsplit')
 const transactionType = document.getElementById('transactiontype')
 
 //Define secondary input variables
-
 const inputAddress = document.getElementById('inputaddress')
 const inputAddress2 = document.getElementById('inputaddress2')
 const inputCity = document.getElementById('inputcity')
@@ -60,16 +69,34 @@ const inputCompany = document.getElementById('inputcompany')
 const inputPreparedBy = document.getElementById('inputpreparedby')
 const inputPreparedFor = document.getElementById('inputpreparedfor')
 
+//Define Reset button
+const resetButton = document.getElementById('reset')
+
 //Store data in local storage
-function storeLocal(){
+function storeLocal(event) {
   //localStorage.setItem(event.target.id, event.target.value)
 
+  // Get =====================
+  var generalState = localStorage.getItem('general')
 
-//NOTE - Work on this below... need to get your read write of event.target.id and values right
+  if (generalState) {
+    generalState = JSON.parse(generalState)
+  } else {
+    generalState = {}
+  }
 
-//  localStorage.setItem("general",JSON.stringify({event.target.id: event.target.value})
+  generalState[event.target.id] = event.target.value
+  localStorage.setItem('general', JSON.stringify(generalState))
 
 }
+
+
+// Reset Button
+function resetLocal() {
+  localStorage.clear()
+  renderGeneral()
+}
+
 
 //Event Listeners - tabs
 generalTab.addEventListener('click', renderGeneral)
@@ -78,20 +105,23 @@ otherTab.addEventListener('click', renderOther)
 
 
 // Event Listeners - Required
-salesPrice.addEventListener('keyup',storeLocal)
-loanAmount.addEventListener('keyup',storeLocal)
-inputState.addEventListener('change',storeLocal)
-paymentSplit.addEventListener('change',storeLocal)
-transactionType.addEventListener('change',storeLocal)
+salesPrice.addEventListener('keyup', storeLocal)
+loanAmount.addEventListener('keyup', storeLocal)
+inputState.addEventListener('change', storeLocal)
+paymentSplit.addEventListener('change', storeLocal)
+transactionType.addEventListener('change', storeLocal)
 
 //Event Listeners - secondary
-inputAddress.addEventListener('keyup',storeLocal)
-inputAddress2.addEventListener('keyup',storeLocal)
-inputCity.addEventListener('keyup',storeLocal)
-inputZip.addEventListener('keyup',storeLocal)
-inputCompany.addEventListener('keyup',storeLocal)
-inputPreparedBy.addEventListener('keyup',storeLocal)
-inputPreparedFor.addEventListener('keyup',storeLocal)
+inputAddress.addEventListener('keyup', storeLocal)
+inputAddress2.addEventListener('keyup', storeLocal)
+inputCity.addEventListener('keyup', storeLocal)
+inputZip.addEventListener('keyup', storeLocal)
+inputCompany.addEventListener('keyup', storeLocal)
+inputPreparedBy.addEventListener('keyup', storeLocal)
+inputPreparedFor.addEventListener('keyup', storeLocal)
+
+//Event Listener - reset resetButton
+resetButton.addEventListener('click', resetLocal)
 
 
 
@@ -104,10 +134,11 @@ inputPreparedFor.addEventListener('keyup',storeLocal)
 
 //Newest way... in the templates as default.
 
+
 // New way, into object
-// localStorage.setItem("general",JSON.stringify({"inputstate": "Guam"})
-// localStorage.setItem("general",JSON.stringify({"paymentsplit": "buyerBorrowerSplit"})
-// localStorage.setItem("general",JSON.stringify({"transactiontype": "Residential"})
+// localStorage.setItem("general",JSON.stringify({"inputstate": "Guam"}))
+// localStorage.setItem("general",JSON.stringify({"paymentsplit": "buyerBorrowerSplit"}))
+// localStorage.setItem("general",JSON.stringify({"transactiontype": "Residential"}))
 
 // Old way, into individual items:
 // localStorage.setItem("inputstate", "Guam")
