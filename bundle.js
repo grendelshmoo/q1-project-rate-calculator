@@ -35,8 +35,6 @@ const calc = require('./calculations')
 // localStorage.setItem('other', JSON.stringify({}))
 
 
-
-
 //Render the General Pane
 
 function renderGeneral() {
@@ -45,7 +43,7 @@ function renderGeneral() {
   // state && (Object.hasOwnKey.general.salesprice)
   // console.log(state)
 
-  if (state && state.hasOwnProperty('salesprice')) {
+  if (state && state.hasOwnProperty('salesprice' && 'loanamount')) {
 
     document.getElementById('generalpane').innerHTML = templates.generalTemplate(state)
 
@@ -92,11 +90,22 @@ const inputPreparedFor = document.getElementById('inputpreparedfor')
 //Define Reset button
 const resetButton = document.getElementById('reset')
 
+//Define Required Fields alert
+const requiredAlert = document.getElementsByClassName('alert')
+
 //Store data in local storage
 function storeLocal(event) {
-  //localStorage.setItem(event.target.id, event.target.value)
 
-  // Get =====================
+  //Validation of required inputState - NOTE does not work.
+  // var a = salesPrice.value
+  // var b = loanAmount.value
+  //
+  // if (a && b) {
+  //   requiredAlert.toggle('hidden')
+  // }
+
+
+  //Write
   var generalState = localStorage.getItem('general')
 
   if (generalState) {
@@ -116,11 +125,14 @@ function storeLocal(event) {
 function resetLocal() {
   localStorage.clear()
 
-  // NOTE - Why doesn't this work to initialize an empty object in local storage?
-  // localStorage.setItem('general', JSON.stringify({})
-
+  //this works to clear the page
   renderGeneral()
+
+  // how to call renderSummary to zero?
   renderSummary()
+
+  // NOTE - Why doesn't this work to initialize an empty object in local storage?
+  // localStorage.setItem('general', JSON.stringify('{}')
 
 }
 
