@@ -17,7 +17,6 @@ const resultTable = function () {
 
   }
 
-
   // Call all calculation functions
   splitTotal()
   // Should return an object {buyerTotal: xxxxx, sellerTotal:yyyyy}

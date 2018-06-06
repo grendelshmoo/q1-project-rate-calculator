@@ -105,16 +105,17 @@ function storeLocal(event) {
 
 // Reset Button
 function resetLocal() {
-  localStorage.clear()
+  // localStorage.clear()
+  //
+  // //this works to clear the page
+  // renderGeneral()
+  //
+  // // how to call renderSummary to zero?
+  // renderSummary()
+  // summaryTotal = {}
 
-  //this works to clear the page
-  renderGeneral()
-
-  // how to call renderSummary to zero?
-  renderSummary()
-  summaryTotal = {}
-  // NOTE - Why doesn't this work to initialize an empty object in local storage?
-  // localStorage.setItem('general', JSON.stringify('{}')
+    localStorage.clear()
+    location.reload()
 
 }
 
@@ -145,34 +146,17 @@ inputPreparedFor.addEventListener('keyup', storeLocal)
 resetButton.addEventListener('click', resetLocal)
 
 
-
-
-
-
-
-// Local Storage defaults - NOTE this probably needs to be changed... may not allow state changes
-// Maybe make a "defaults" function included in the reset button?
-
-//Newest way... in the templates as default.
-
-
-// New way, into object
-// localStorage.setItem("general",JSON.stringify({"inputstate": "Guam"}))
-// localStorage.setItem("general",JSON.stringify({"paymentsplit": "buyerBorrowerSplit"}))
-// localStorage.setItem("general",JSON.stringify({"transactiontype": "Residential"}))
-
-// Old way, into individual items:
-// localStorage.setItem("inputstate", "Guam")
-// localStorage.setItem("paymentsplit", "buyerBorrowerSplit")
-// localStorage.setItem("transactiontype", "Residential")
-
-// calc.splitPayments(paymentSplit)
-
-
 //Render the Summary Column
 function renderSummary() {
-  console.log(salesPrice.value, loanAmount.value)
-  let summaryTotal = calc.total(document.getElementById('salesprice'), document.getElementById('loanamount'))
-  summaryPane.innerHTML = templates.summaryTemplate(summaryTotal)
+
+  // let summaryTotal = calc.total(document.getElementById('salesprice'), document.getElementById('loanamount'))
+  // summaryPane.innerHTML = templates.summaryTemplate(summaryTotal)
+
+//  If you can get calculations to return the correct object.
+
+ let resultTable = calc()
+ summaryPane.innerHTML = templates.summaryTemplate(resultTable)
+
+
 }
 renderSummary()

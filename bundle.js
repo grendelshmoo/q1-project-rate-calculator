@@ -1,25 +1,40 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
-const resultTable = {}
+const resultTable = function () {
 
-function total(a, b) {
-a = parseInt(a.value.replace(/,/g, ""))
-b = parseInt(b.value.replace(/,/g, ""))
 
-let result = (a+b)/2
-resultTable['buyerTotal'] = result
-resultTable['sellerTotal'] = result
+  let generalLocal = JSON.parse(localStorage.getItem('general'))
+  // let loanAmountLocal = JSON.parse(localStorage.getItem('general'))
+  let finalResult = {}
 
-return resultTable
+  if (!generalLocal) {
+    return finalResult
+  }
+  if (!generalLocal.salesprice || !generalLocal.loanamount) {
+    return finalResult
+  }
+
+  // Need to make buyer & seller exports from generalState
+  function splitTotal () {
+
+    buyerCost = parseInt(generalLocal.salesprice.replace(/,/g, ""))
+    sellerCost = parseInt(generalLocal.loanamount.replace(/,/g, ""))
+
+    let result = (buyerCost+sellerCost)/2
+    finalResult['buyerTotal'] = result
+    finalResult['sellerTotal'] = result
+
+  }
+
+
+
+  // Call all calculation functions
+  splitTotal()
+  // Should return an object {buyerTotal: xxxxx, sellerTotal:yyyyy}
+  return finalResult
 }
 
-module.exports = {
-  total,
-  resultTable
-}
 
-
-// const resultTable = function () { all calculation functions? }
-// return resultTable
+module.exports = resultTable
 
 },{}],2:[function(require,module,exports){
 //Import data & templates
@@ -129,16 +144,17 @@ function storeLocal(event) {
 
 // Reset Button
 function resetLocal() {
-  localStorage.clear()
+  // localStorage.clear()
+  //
+  // //this works to clear the page
+  // renderGeneral()
+  //
+  // // how to call renderSummary to zero?
+  // renderSummary()
+  // summaryTotal = {}
 
-  //this works to clear the page
-  renderGeneral()
-
-  // how to call renderSummary to zero?
-  renderSummary()
-  summaryTotal = {}
-  // NOTE - Why doesn't this work to initialize an empty object in local storage?
-  // localStorage.setItem('general', JSON.stringify('{}')
+    localStorage.clear()
+    location.reload()
 
 }
 
@@ -169,35 +185,18 @@ inputPreparedFor.addEventListener('keyup', storeLocal)
 resetButton.addEventListener('click', resetLocal)
 
 
-
-
-
-
-
-// Local Storage defaults - NOTE this probably needs to be changed... may not allow state changes
-// Maybe make a "defaults" function included in the reset button?
-
-//Newest way... in the templates as default.
-
-
-// New way, into object
-// localStorage.setItem("general",JSON.stringify({"inputstate": "Guam"}))
-// localStorage.setItem("general",JSON.stringify({"paymentsplit": "buyerBorrowerSplit"}))
-// localStorage.setItem("general",JSON.stringify({"transactiontype": "Residential"}))
-
-// Old way, into individual items:
-// localStorage.setItem("inputstate", "Guam")
-// localStorage.setItem("paymentsplit", "buyerBorrowerSplit")
-// localStorage.setItem("transactiontype", "Residential")
-
-// calc.splitPayments(paymentSplit)
-
-
 //Render the Summary Column
 function renderSummary() {
-  console.log(salesPrice.value, loanAmount.value)
-  let summaryTotal = calc.total(document.getElementById('salesprice'), document.getElementById('loanamount'))
-  summaryPane.innerHTML = templates.summaryTemplate(summaryTotal)
+
+  // let summaryTotal = calc.total(document.getElementById('salesprice'), document.getElementById('loanamount'))
+  // summaryPane.innerHTML = templates.summaryTemplate(summaryTotal)
+
+//  If you can get calculations to return the correct object.
+
+ let resultTable = calc()
+ summaryPane.innerHTML = templates.summaryTemplate(resultTable)
+
+
 }
 renderSummary()
 
