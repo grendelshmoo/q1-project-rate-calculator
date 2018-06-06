@@ -15,47 +15,78 @@ const resultTable = function() {
 
 
 // Rounder
-function round(num) {
-  return Math.round(num * 100) / 100
-}
+  function round(num) {
+    return Math.round(num * 100) / 100
+  }
 
-// Escrow
-function escrow() {
+// Escrow Fees
+  function escrowFees() {
+    //BuyerPaysAll
+    if (generalLocal.paymentsplit == "BuyerPaysAll") {
+      let a = parseInt(generalLocal.salesprice.replace(/,/g, ""))
+      let b = parseInt(generalLocal.loanamount.replace(/,/g, ""))
+
+
+      let result = (((a - b) / 1000) * 2.50) + 50
+      finalResult['escrowBuyer'] = round(result)
+      finalResult['escrowTotal'] = round(result)
+
+      //BorrowerPaysAll -
+    } else if (generalLocal.paymentsplit === "BorrowerPaysAll") {
+      let a = parseInt(generalLocal.salesprice.replace(/,/g, ""))
+      let b = parseInt(generalLocal.loanamount.replace(/,/g, ""))
+
+
+      let result = (((a - b) / 1000) * 2.50) + 50
+      finalResult['escrowBorrower'] = round(result)
+      finalResult['escrowTotal'] = round(result)
+
+    } else {
+      //Else Split Evenly
+      let a = parseInt(generalLocal.salesprice.replace(/,/g, ""))
+      let b = parseInt(generalLocal.loanamount.replace(/,/g, ""))
+
+
+      let result = (((a - b) / 1000) * 2.50) + 50
+      finalResult['escrowBuyer'] = round(result / 2)
+      finalResult['escrowBorrower'] = round(result / 2)
+      finalResult['escrowTotal'] = round(result)
+
+    }
+  }
+
+// Recording Fees
+
+function recordingFees() {
   //BuyerPaysAll
   if (generalLocal.paymentsplit == "BuyerPaysAll") {
-    let a = parseInt(generalLocal.salesprice.replace(/,/g, ""))
     let b = parseInt(generalLocal.loanamount.replace(/,/g, ""))
-
-    console.log("Buyer Escrow")
-    let result = (((a-b)/1000) * 2.50) + 50
-    finalResult['escrowBuyer'] = round(result)
-    finalResult['escrowTotal'] = round(result)
+    let result = ((b/1000)*2.5) + 25
+    finalResult['recordingBuyer'] = round(result)
+    finalResult['recordingTotal'] = round(result)
 
   //BorrowerPaysAll -
   } else if (generalLocal.paymentsplit === "BorrowerPaysAll") {
-    let a = parseInt(generalLocal.salesprice.replace(/,/g, ""))
     let b = parseInt(generalLocal.loanamount.replace(/,/g, ""))
+    let result = ((b/1000)*2.5) + 25
+    finalResult['recordingBorrower'] = round(result)
+    finalResult['recordingTotal'] = round(result)
 
-    console.log("Borrower Escrow")
-    let result = (((a-b)/1000) * 2.50) + 50
-    finalResult['escrowBorrower'] = round(result)
-    finalResult['escrowTotal'] = round(result)
-
+  //Else Split Evenly
   } else {
-    //Else Split Evenly
-    let a = parseInt(generalLocal.salesprice.replace(/,/g, ""))
     let b = parseInt(generalLocal.loanamount.replace(/,/g, ""))
+    let result = ((b/1000)*2.5) + 25
+    finalResult['recordingBuyer'] = round(result / 2)
+    finalResult['recordingBorrower'] = round(result / 2)
+    finalResult['recordingTotal'] = round(result)
 
-    console.log("Split Escrow")
-    let result = (((a-b)/1000) * 2.50) + 50
-    finalResult['escrowBuyer'] = round(result/2)
-    finalResult['escrowBorrower'] = round(result/2)
-    finalResult['escrowTotal'] = round(result)
 
   }
 }
 
-// Total & Split
+
+
+  // Total & Split
   function splitTotal() {
 
     //BuyerPaysAll
@@ -64,15 +95,15 @@ function escrow() {
       let b = parseInt(generalLocal.loanamount.replace(/,/g, ""))
 
       let result = (a + b)
-        finalResult['buyerTotal'] = round(result)
+      finalResult['buyerTotal'] = round(result)
 
-    //BorrowerPaysAll -
+      //BorrowerPaysAll -
     } else if (generalLocal.paymentsplit === "BorrowerPaysAll") {
       let a = parseInt(generalLocal.salesprice.replace(/,/g, ""))
       let b = parseInt(generalLocal.loanamount.replace(/,/g, ""))
 
       let result = (a + b)
-        finalResult['borrowerTotal'] = round(result)
+      finalResult['borrowerTotal'] = round(result)
 
     } else {
       //Else Split Evenly
@@ -90,7 +121,8 @@ function escrow() {
 
 
   // Call all calculation functions
-  escrow()
+  recordingFees()
+  escrowFees()
   splitTotal()
 
   // Should return an object {buyerTotal: xxxxx, sellerTotal:yyyyy}
@@ -447,8 +479,8 @@ function summaryTemplate (summary) {
       </tr>
       <tr>
         <td>Recording Fee:</td>
-        <td>$0</td>
-        <td>$0</td>
+        <td>\$${summary.recordingBuyer || '0'}</td>
+        <td>\$${summary.recordingBorrower || '0'}</td>
       </tr>
 
       <tr class="font-weight-bold">

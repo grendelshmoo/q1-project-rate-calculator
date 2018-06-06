@@ -181,8 +181,8 @@ function summaryTemplate (summary) {
       </tr>
       <tr>
         <td>Recording Fee:</td>
-        <td>$0</td>
-        <td>$0</td>
+        <td>\$${summary.recordingBuyer || '0'}</td>
+        <td>\$${summary.recordingBorrower || '0'}</td>
       </tr>
 
       <tr class="font-weight-bold">
