@@ -72,13 +72,14 @@ const requiredAlert = document.getElementsByClassName('alert')
 //Store data in local storage
 function storeLocal(event) {
 
-  //Validation of required inputState - NOTE does not work.
-  // var a = salesPrice.value
-  // var b = loanAmount.value
-  //
-  // if (a && b) {
-  //   requiredAlert.toggle('hidden')
-  // }
+  //Validation of required inputState - NOTE does not work right.
+  var a = salesPrice.value
+  var b = loanAmount.value
+
+  if (a && b) {
+    document.getElementById('alert-on').classList.toggle('hide-message')
+    document.getElementById('alert-off').classList.toggle('hide-message')
+  }
 
 
   //Write

@@ -74,13 +74,14 @@
 
 
         <!-- Sales & Loan field Validation Begin -->
-
-        <div class="alert alert-danger m-2 p-2" role="alert">
-          <i class="fas fa-exclamation-circle"></i> Sales Price & Loan Amount are Required.
-        </div>
-        <div class="alert alert-success m-2 p-2" hidden role="alert">
+        <div id="alert-off" class="alert alert-success m-2 p-2 hide-message" role="alert">
           <i class="fas fa-thumbs-up"></i> Your estimate is ready.
         </div>
+        
+        <div id="alert-on" class="alert alert-danger m-2 p-2" role="alert">
+          <i class="fas fa-exclamation-circle"></i> Sales Price & Loan Amount are Required.
+        </div>
+
 
 
         <hr>
