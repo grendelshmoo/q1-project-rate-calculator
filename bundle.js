@@ -255,8 +255,8 @@ function generalTemplate (general = {}) {
       <div class="form-group input-group-sm col-md-4">
         <label for="inputState">State/Territory</label>
         <select id="inputstate" class="form-control" value=${general.inputstate || 'CNMI'}>
-<option value="Guam">Guam</option>
-<option value="CNMI">CNMI</option>
+<option ${general.inputstate === 'Guam' && "selected"} value="Guam">Guam</option>
+<option ${general.inputstate === 'CNMI' && "selected"} value="CNMI">CNMI</option>
 </select>
       </div>
       <div class="form-group input-group-sm col-md-2">
@@ -272,9 +272,9 @@ function generalTemplate (general = {}) {
       <div class="col">
         <h5>Buyer/Borrower Information</h5> Please select who pays
         <select class="custom-select input-group-sm mr-sm-2 mb-3" id="paymentsplit" value=${general.paymentsplit || 'buyerBorrowerSplit'}>
-          <option selected value="buyerBorrowerSplit">Buyer/Borrower Split</option>
-          <option value="BuyerPaysAll">Buyer Pays All</option>
-          <option value="BorrowerPaysAll">Borrower Pays All</option>
+          <option ${general.paymentsplit === 'buyerBorrowerSplit' && "selected"} value="buyerBorrowerSplit">Buyer/Borrower Split</option>
+          <option ${general.paymentsplit === 'BuyerPaysAll' && "selected"} value="BuyerPaysAll">Buyer Pays All</option>
+          <option ${general.paymentsplit === 'BorrowerPaysAll' && "selected"} value="BorrowerPaysAll">Borrower Pays All</option>
         </select>
             <hr>
         <h5> Type of Transaction</h5>
