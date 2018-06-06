@@ -13,12 +13,12 @@ const resultTable = function() {
   }
 
 
-// Rounder
+  // Rounder
   function round(num) {
     return Math.round(num * 100) / 100
   }
 
-// Escrow Fees
+  // Escrow Fees
   function escrowFees() {
     //BuyerPaysAll
     if (generalLocal.paymentsplit == "BuyerPaysAll") {
@@ -54,36 +54,41 @@ const resultTable = function() {
     }
   }
 
-// Recording Fees
+  // Recording Fees
 
-function recordingFees() {
-  //BuyerPaysAll
-  if (generalLocal.paymentsplit == "BuyerPaysAll") {
-    let b = parseInt(generalLocal.loanamount.replace(/,/g, ""))
-    let result = ((b/1000)*2.5) + 25
-    finalResult['recordingBuyer'] = round(result)
-    finalResult['recordingTotal'] = round(result)
+  function recordingFees() {
+    //BuyerPaysAll
+    if (generalLocal.paymentsplit == "BuyerPaysAll") {
+      let b = parseInt(generalLocal.loanamount.replace(/,/g, ""))
+      let result = ((b / 1000) * 2.5) + 25
+      finalResult['recordingBuyer'] = round(result)
+      finalResult['recordingTotal'] = round(result)
 
-  //BorrowerPaysAll -
-  } else if (generalLocal.paymentsplit === "BorrowerPaysAll") {
-    let b = parseInt(generalLocal.loanamount.replace(/,/g, ""))
-    let result = ((b/1000)*2.5) + 25
-    finalResult['recordingBorrower'] = round(result)
-    finalResult['recordingTotal'] = round(result)
+      //BorrowerPaysAll -
+    } else if (generalLocal.paymentsplit === "BorrowerPaysAll") {
+      let b = parseInt(generalLocal.loanamount.replace(/,/g, ""))
+      let result = ((b / 1000) * 2.5) + 25
+      finalResult['recordingBorrower'] = round(result)
+      finalResult['recordingTotal'] = round(result)
 
-  //Else Split Evenly
-  } else {
-    let b = parseInt(generalLocal.loanamount.replace(/,/g, ""))
-    let result = ((b/1000)*2.5) + 25
-    finalResult['recordingBuyer'] = round(result / 2)
-    finalResult['recordingBorrower'] = round(result / 2)
-    finalResult['recordingTotal'] = round(result)
+      //Else Split Evenly
+    } else {
+      let b = parseInt(generalLocal.loanamount.replace(/,/g, ""))
+      let result = ((b / 1000) * 2.5) + 25
+      finalResult['recordingBuyer'] = round(result / 2)
+      finalResult['recordingBorrower'] = round(result / 2)
+      finalResult['recordingTotal'] = round(result)
+
+
+    }
+  }
+
+  //Title Fees
+
+  function titleFees() {
 
 
   }
-}
-
-
 
   // Total & Split
   function splitTotal() {
