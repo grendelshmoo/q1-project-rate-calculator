@@ -13,6 +13,11 @@ const resultTable = function() {
   }
 
 
+// Rounder
+function round(num) {
+  return Math.round(num * 100) / 100
+}
+
 
   // Need to make buyer & seller exports from generalState
   function splitTotal() {
@@ -23,7 +28,7 @@ const resultTable = function() {
       let b = parseInt(generalLocal.loanamount.replace(/,/g, ""))
 
       let result = (a + b)
-        finalResult['buyerTotal'] = result
+        finalResult['buyerTotal'] = round(result)
 
     //BorrowerPaysAll -
     } else if (generalLocal.paymentsplit === "BorrowerPaysAll") {
@@ -31,7 +36,7 @@ const resultTable = function() {
       let b = parseInt(generalLocal.loanamount.replace(/,/g, ""))
 
       let result = (a + b)
-        finalResult['borrowerTotal'] = result
+        finalResult['borrowerTotal'] = round(result)
 
     } else {
       //Else Split Evenly
@@ -39,8 +44,8 @@ const resultTable = function() {
       let b = parseInt(generalLocal.loanamount.replace(/,/g, ""))
 
       let result = (a + b) / 2
-      finalResult['buyerTotal'] = result
-      finalResult['borrowerTotal'] = result
+      finalResult['buyerTotal'] = round(result)
+      finalResult['borrowerTotal'] = round(result)
     }
 
 
