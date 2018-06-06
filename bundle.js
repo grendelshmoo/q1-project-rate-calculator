@@ -1,5 +1,5 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
-const resultTable = function () {
+const resultTable = function() {
 
 
   let generalLocal = JSON.parse(localStorage.getItem('general'))
@@ -13,22 +13,45 @@ const resultTable = function () {
     return finalResult
   }
 
+
+
   // Need to make buyer & seller exports from generalState
-  function splitTotal () {
+  function splitTotal() {
 
-    buyerCost = parseInt(generalLocal.salesprice.replace(/,/g, ""))
-    sellerCost = parseInt(generalLocal.loanamount.replace(/,/g, ""))
+    //BuyerPaysAll
+    if (generalLocal.paymentsplit == "BuyerPaysAll") {
+      let a = parseInt(generalLocal.salesprice.replace(/,/g, ""))
+      let b = parseInt(generalLocal.loanamount.replace(/,/g, ""))
 
-    let result = (buyerCost+sellerCost)/2
-    finalResult['buyerTotal'] = result
-    finalResult['sellerTotal'] = result
+      let result = (a + b)
+        finalResult['buyerTotal'] = result
+
+    //BorrowerPaysAll -
+    } else if (generalLocal.paymentsplit === "BorrowerPaysAll") {
+      let a = parseInt(generalLocal.salesprice.replace(/,/g, ""))
+      let b = parseInt(generalLocal.loanamount.replace(/,/g, ""))
+
+      let result = (a + b)
+        finalResult['borrowerTotal'] = result
+
+    } else {
+      //Else Split Evenly
+      let a = parseInt(generalLocal.salesprice.replace(/,/g, ""))
+      let b = parseInt(generalLocal.loanamount.replace(/,/g, ""))
+
+      let result = (a + b) / 2
+      finalResult['buyerTotal'] = result
+      finalResult['borrowerTotal'] = result
+    }
+
+
 
   }
 
 
-
   // Call all calculation functions
   splitTotal()
+
   // Should return an object {buyerTotal: xxxxx, sellerTotal:yyyyy}
   return finalResult
 }
@@ -195,7 +218,6 @@ function renderSummary() {
 
  let resultTable = calc()
  summaryPane.innerHTML = templates.summaryTemplate(resultTable)
-
 
 }
 renderSummary()
@@ -391,7 +413,7 @@ function summaryTemplate (summary) {
       <tr class="font-weight-bold">
         <td>Total:</td>
         <td>\$${summary.buyerTotal || '0'}</td>
-        <td>\$${summary.sellerTotal || '0'}</td>
+        <td>\$${summary.borrowerTotal || '0'}</td>
       </tr>
     </tbody>
   </table>

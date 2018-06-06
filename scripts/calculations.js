@@ -1,4 +1,4 @@
-const resultTable = function () {
+const resultTable = function() {
 
 
   let generalLocal = JSON.parse(localStorage.getItem('general'))
@@ -12,22 +12,45 @@ const resultTable = function () {
     return finalResult
   }
 
+
+
   // Need to make buyer & seller exports from generalState
-  function splitTotal () {
+  function splitTotal() {
 
-    buyerCost = parseInt(generalLocal.salesprice.replace(/,/g, ""))
-    sellerCost = parseInt(generalLocal.loanamount.replace(/,/g, ""))
+    //BuyerPaysAll
+    if (generalLocal.paymentsplit == "BuyerPaysAll") {
+      let a = parseInt(generalLocal.salesprice.replace(/,/g, ""))
+      let b = parseInt(generalLocal.loanamount.replace(/,/g, ""))
 
-    let result = (buyerCost+sellerCost)/2
-    finalResult['buyerTotal'] = result
-    finalResult['sellerTotal'] = result
+      let result = (a + b)
+        finalResult['buyerTotal'] = result
+
+    //BorrowerPaysAll -
+    } else if (generalLocal.paymentsplit === "BorrowerPaysAll") {
+      let a = parseInt(generalLocal.salesprice.replace(/,/g, ""))
+      let b = parseInt(generalLocal.loanamount.replace(/,/g, ""))
+
+      let result = (a + b)
+        finalResult['borrowerTotal'] = result
+
+    } else {
+      //Else Split Evenly
+      let a = parseInt(generalLocal.salesprice.replace(/,/g, ""))
+      let b = parseInt(generalLocal.loanamount.replace(/,/g, ""))
+
+      let result = (a + b) / 2
+      finalResult['buyerTotal'] = result
+      finalResult['borrowerTotal'] = result
+    }
+
+
 
   }
 
 
-
   // Call all calculation functions
   splitTotal()
+
   // Should return an object {buyerTotal: xxxxx, sellerTotal:yyyyy}
   return finalResult
 }

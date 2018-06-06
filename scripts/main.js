@@ -157,6 +157,5 @@ function renderSummary() {
  let resultTable = calc()
  summaryPane.innerHTML = templates.summaryTemplate(resultTable)
 
-
 }
 renderSummary()

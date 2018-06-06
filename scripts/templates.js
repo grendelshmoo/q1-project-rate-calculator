@@ -188,7 +188,7 @@ function summaryTemplate (summary) {
       <tr class="font-weight-bold">
         <td>Total:</td>
         <td>\$${summary.buyerTotal || '0'}</td>
-        <td>\$${summary.sellerTotal || '0'}</td>
+        <td>\$${summary.borrowerTotal || '0'}</td>
       </tr>
     </tbody>
   </table>
