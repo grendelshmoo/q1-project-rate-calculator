@@ -176,8 +176,8 @@ function summaryTemplate (summary) {
       <tr>
 
         <td>Escrow Fee:</td>
-        <td>$0</td>
-        <td>$0</td>
+        <td>\$${summary.escrowBuyer || '0'}</td>
+        <td>\$${summary.escrowBorrower || '0'}</td>
       </tr>
       <tr>
         <td>Recording Fee:</td>

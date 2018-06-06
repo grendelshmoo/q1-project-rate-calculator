@@ -19,8 +19,43 @@ function round(num) {
   return Math.round(num * 100) / 100
 }
 
+// Escrow
+function escrow() {
+  //BuyerPaysAll
+  if (generalLocal.paymentsplit == "BuyerPaysAll") {
+    let a = parseInt(generalLocal.salesprice.replace(/,/g, ""))
+    let b = parseInt(generalLocal.loanamount.replace(/,/g, ""))
 
-  // Need to make buyer & seller exports from generalState
+    console.log("Buyer Escrow")
+    let result = (((a-b)/1000) * 2.50) + 50
+    finalResult['escrowBuyer'] = round(result)
+    finalResult['escrowTotal'] = round(result)
+
+  //BorrowerPaysAll -
+  } else if (generalLocal.paymentsplit === "BorrowerPaysAll") {
+    let a = parseInt(generalLocal.salesprice.replace(/,/g, ""))
+    let b = parseInt(generalLocal.loanamount.replace(/,/g, ""))
+
+    console.log("Borrower Escrow")
+    let result = (((a-b)/1000) * 2.50) + 50
+    finalResult['escrowBorrower'] = round(result)
+    finalResult['escrowTotal'] = round(result)
+
+  } else {
+    //Else Split Evenly
+    let a = parseInt(generalLocal.salesprice.replace(/,/g, ""))
+    let b = parseInt(generalLocal.loanamount.replace(/,/g, ""))
+
+    console.log("Split Escrow")
+    let result = (((a-b)/1000) * 2.50) + 50
+    finalResult['escrowBuyer'] = round(result/2)
+    finalResult['escrowBorrower'] = round(result/2)
+    finalResult['escrowTotal'] = round(result)
+
+  }
+}
+
+// Total & Split
   function splitTotal() {
 
     //BuyerPaysAll
@@ -55,6 +90,7 @@ function round(num) {
 
 
   // Call all calculation functions
+  escrow()
   splitTotal()
 
   // Should return an object {buyerTotal: xxxxx, sellerTotal:yyyyy}
@@ -406,8 +442,8 @@ function summaryTemplate (summary) {
       <tr>
 
         <td>Escrow Fee:</td>
-        <td>$0</td>
-        <td>$0</td>
+        <td>\$${summary.escrowBuyer || '0'}</td>
+        <td>\$${summary.escrowBorrower || '0'}</td>
       </tr>
       <tr>
         <td>Recording Fee:</td>
