@@ -37,7 +37,7 @@ function generalTemplate (general = {}) {
   <form>
     <div class="form-group input-group-sm">
       <label for="inputAddress">Address</label>
-      <input type="text" class="form-control" id="inputaddress" placeholder="1234 Main St" value=${general.inputaddress || ''}>
+      <input type="text" class="form-control" id="inputaddress" placeholder="1234 Main St" value="${general.inputaddress || ''}">
     </div>
     <div class="form-group input-group-sm">
       <label for="inputAddress2">Address 2</label>
@@ -75,8 +75,8 @@ function generalTemplate (general = {}) {
             <hr>
         <h5> Type of Transaction</h5>
         <select class="custom-select input-group-sm mr-sm-2 mb-3" id="transactiontype" value=${general.transactiontype || 'Residential'}>
-          <option selected value="Residential">Residential</option>
-          <option value="Commercial">Commercial</option>
+          <option ${general.transactiontype === "Residential" && "selected"} value="Residential">Residential</option>
+          <option ${general.transactiontype === "Commercial" && "selected"} value="Commercial">Commercial</option>
         </select>
 
       </div>
@@ -102,9 +102,51 @@ function generalTemplate (general = {}) {
 
 function closingTemplate (closing) {
   return `
-  <h1> Closing Page </h1>
+  <h4> Closing Costs </h4>
 
+  Termite Report
+  <div style="width:200px" class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">$</span>
+    </div>
+    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+    <div class="input-group-append">
 
+    </div>
+  </div>
+
+  Attorney Fees
+  <div style="width:200px" class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">$</span>
+    </div>
+    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+    <div class="input-group-append">
+
+    </div>
+  </div>
+
+  Home Inspection
+  <div style="width:200px" class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">$</span>
+    </div>
+    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+    <div class="input-group-append">
+
+    </div>
+  </div>
+
+  Loan Payoff
+  <div style="width:200px" class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">$</span>
+    </div>
+    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+    <div class="input-group-append">
+
+    </div>
+  </div>
   `
 }
 

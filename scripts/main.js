@@ -12,40 +12,42 @@ const calc = require('./calculations')
 
 
 //Render the General Pane
-
 function renderGeneral() {
   var state = JSON.parse(localStorage.getItem('general'))
 
   // state && (Object.hasOwnKey.general.salesprice)
   // console.log(state)
 
-  if (state && state.hasOwnProperty('salesprice' && 'loanamount')) {
+  if (state && state.hasOwnProperty('salesprice')) {
 
     document.getElementById('generalpane').innerHTML = templates.generalTemplate(state)
 
   } else {
     document.getElementById('generalpane').innerHTML = templates.generalTemplate()
-
   }
-
 
 }
 renderGeneral()
 
 //Render the Closing Costs Pane
 function renderClosing() {
-  document.getElementById('generalpane').innerHTML = templates.closingTemplate()
+  generalPane.innerHTML = templates.closingTemplate()
 }
 
 //Render the Other pane - To be implemented later.
 function renderOther() {
-  document.getElementById('generalpane').innerHTML = templates.otherTemplate()
+  generalPane.innerHTML = templates.otherTemplate()
 }
 
 //Define tabs as variables
 const generalTab = document.getElementById('general-tab')
 const closingTab = document.getElementById('closing-tab')
 const otherTab = document.getElementById('other-tab')
+
+//Define tab contents for easy access
+const generalPane = document.getElementById('generalpane')
+const summaryPane = document.getElementById('summarypane')
+
 
 //Define required input variables.
 const salesPrice = document.getElementById('salesprice')
@@ -67,7 +69,7 @@ const inputPreparedFor = document.getElementById('inputpreparedfor')
 const resetButton = document.getElementById('reset')
 
 //Define Required Fields alert
-const requiredAlert = document.getElementsByClassName('alert')
+// const requiredAlert = document.getElementsByClassName('alert')
 
 //Store data in local storage
 function storeLocal(event) {
@@ -77,8 +79,11 @@ function storeLocal(event) {
   var b = loanAmount.value
 
   if (a && b) {
-    document.getElementById('alert-on').classList.toggle('hide-message')
-    document.getElementById('alert-off').classList.toggle('hide-message')
+    document.getElementById('alert-on').classList.add('hide-message')
+    document.getElementById('alert-off').classList.remove('hide-message')
+  } else {
+    document.getElementById('alert-on').classList.remove('hide-message')
+    document.getElementById('alert-off').classList.add('hide-message')
   }
 
 
@@ -107,7 +112,7 @@ function resetLocal() {
 
   // how to call renderSummary to zero?
   renderSummary()
-
+  summaryTotal = {}
   // NOTE - Why doesn't this work to initialize an empty object in local storage?
   // localStorage.setItem('general', JSON.stringify('{}')
 
@@ -166,7 +171,8 @@ resetButton.addEventListener('click', resetLocal)
 
 //Render the Summary Column
 function renderSummary() {
-  let summaryTotal = calc.total(salesPrice, loanAmount)
-  document.getElementById('summarypane').innerHTML = templates.summaryTemplate(summaryTotal)
+  console.log(salesPrice.value, loanAmount.value)
+  let summaryTotal = calc.total(document.getElementById('salesprice'), document.getElementById('loanamount'))
+  summaryPane.innerHTML = templates.summaryTemplate(summaryTotal)
 }
 renderSummary()

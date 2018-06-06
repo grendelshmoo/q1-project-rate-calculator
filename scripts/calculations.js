@@ -17,5 +17,5 @@ module.exports = {
 }
 
 
-// const resultTable = function () { all calculation functions?  }
+// const resultTable = function () { all calculation functions? }
 // return resultTable
