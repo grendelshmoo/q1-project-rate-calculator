@@ -41,12 +41,12 @@ function generalTemplate (general = {}) {
     </div>
     <div class="form-group input-group-sm">
       <label for="inputAddress2">Address 2</label>
-      <input type="text" class="form-control" id="inputaddress2" placeholder="Apartment, studio, or floor" value=${general.inputaddress2 || ''}>
+      <input type="text" class="form-control" id="inputaddress2" placeholder="Apartment, studio, or floor" value="${general.inputaddress2 || ''}">
     </div>
     <div class="form-row">
       <div class="form-group input-group-sm col-md-6">
         <label for="inputCity">City/Village</label>
-        <input type="text" class="form-control" id="inputcity" value=${general.inputcity || ''}>
+        <input type="text" class="form-control" id="inputcity" value="${general.inputcity || ''}">
       </div>
       <div class="form-group input-group-sm col-md-4">
         <label for="inputState">State/Territory</label>
@@ -57,7 +57,7 @@ function generalTemplate (general = {}) {
       </div>
       <div class="form-group input-group-sm col-md-2">
         <label for="inputZip">Zip</label>
-        <input type="text" class="form-control" id="inputzip" value=${general.inputzip || ''}>
+        <input type="text" class="form-control" id="inputzip" value="${general.inputzip || ''}">
       </div>
     </div>
   </form>
@@ -83,15 +83,15 @@ function generalTemplate (general = {}) {
       <div class="col">
         <h5>General Information</h5> Company
         <div class="input-group input-group-sm mb-3">
-          <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="inputcompany" value=${general.inputcompany || ''}>
+          <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="inputcompany" value="${general.inputcompany || ''}">
         </div>
         Prepared by
         <div class="input-group input-group-sm mb-3">
-          <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="inputpreparedby" value=${general.inputpreparedby || ''}>
+          <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="inputpreparedby" value="${general.inputpreparedby || ''}">
         </div>
         Prepared for
         <div class="input-group input-group-sm mb-3">
-          <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="inputpreparedfor" value=${general.inputpreparedfor || ''}>
+          <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="inputpreparedfor" value="${general.inputpreparedfor || ''}">
         </div>
       </div>
     </div>
