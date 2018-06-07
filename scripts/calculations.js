@@ -96,28 +96,46 @@ const resultTable = function() {
 
 
     if (underTen.test(num)) {
-      result = Math.floor(num/500)*500 //?  working 0-9999
+      result = Math.floor(num / 500) * 500 //?  working 0-9999
 
     } else if (fromTenToFifty.test(num)) {
-      result = Math.floor(num/1000)*1000 // working 10000-49999
+      result = Math.floor(num / 1000) * 1000 // working 10000-49999
 
     } else if (fromFiftyToFiveHundred.test(num)) {
-      result = Math.floor(num/5000)*5000 // working 50000-499999
+      result = Math.floor(num / 5000) * 5000 // working 50000-499999
 
     } else if (fromFiveHundredToOneM.test(num)) {
-      result = Math.floor(num/10000)*10000 // working 500000-999999
+      result = Math.floor(num / 10000) * 10000 // working 500000-999999
 
-    } else { console.log("OVER")}  // up to and includes 1M, probably need to make it more specific... to 999999
+    } else {
+      console.log("OVER")
+    } // up to and includes 1M, probably need to make it more specific... to 999999
 
 
 
-  return result
+    return result
   }
 
+  function titleFees(num, location) {
+    let active = rangeFinder(num)
+    let keys = Object.keys(location)
+    let values = Object.values(location)
 
-  function titleFees() {
-console.log(data.guam)
+    let result = 0
 
+
+    for (let i in keys) {
+
+      if (active == keys[i]) {
+        finalResult['titleTotal'] = values[i]
+        finalResult['buyerTitle'] = values[i] / 2
+        finalResult['borrowerTotal'] = values[i] / 2
+
+      }
+    }
+
+
+    return result
   }
 
   // Total & Split
