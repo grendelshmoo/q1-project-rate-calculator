@@ -102,7 +102,7 @@ function generalTemplate (general = {}) {
 
 function closingTemplate (closing) {
   return `
-  <h4> Closing Costs </h4>
+  <h4> Buyer Closing Costs </h4>
 
   Termite Report
   <div style="width:200px" class="input-group mb-3">

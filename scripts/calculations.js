@@ -1,3 +1,6 @@
+//Import data
+const data = require('./data')
+
 const resultTable = function() {
 
 
@@ -125,6 +128,7 @@ const resultTable = function() {
 
 
   // Call all calculation functions
+  titleFees()
   recordingFees()
   escrowFees()
   splitTotal()

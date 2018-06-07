@@ -1,5 +1,5 @@
-//Import data & templates
-// const data = require('./data')
+//Import functions and templates
+const data = require('./data')
 const templates = require('./templates')
 const calc = require('./calculations')
 
@@ -156,6 +156,5 @@ function renderSummary() {
 
  let resultTable = calc()
  summaryPane.innerHTML = templates.summaryTemplate(resultTable)
-
 }
 renderSummary()
