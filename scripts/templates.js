@@ -1,5 +1,5 @@
 function generalTemplate (general = {}) {
-  // console.log(general.inputaddress)
+
   return `
   <h4> Transaction Details </h4>
   <!-- Required Fields  -->
@@ -100,7 +100,8 @@ function generalTemplate (general = {}) {
   `
 }
 
-function closingTemplate (closing) {
+
+function closingTemplate (closing = {}) {
   return `
   <h4> Buyer Closing Costs </h4>
 
@@ -109,7 +110,7 @@ function closingTemplate (closing) {
     <div class="input-group-prepend">
       <span class="input-group-text">$</span>
     </div>
-    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" id="inputtermitereport">
+    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" value="${closing.inputtermitereport || ''}" id="inputtermitereport">
     <div class="input-group-append">
 
     </div>
@@ -120,7 +121,7 @@ function closingTemplate (closing) {
     <div class="input-group-prepend">
       <span class="input-group-text">$</span>
     </div>
-    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" id="inputattorneyfees">
+    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" value="${closing.inputattorneyfees || ''}" id="inputattorneyfees">
     <div class="input-group-append">
 
     </div>
@@ -131,7 +132,7 @@ function closingTemplate (closing) {
     <div class="input-group-prepend">
       <span class="input-group-text">$</span>
     </div>
-    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" id="inputhomeinspection">
+    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" value="${closing.inputhomeinspection || ''}" id="inputhomeinspection">
     <div class="input-group-append">
 
     </div>
@@ -142,7 +143,7 @@ function closingTemplate (closing) {
     <div class="input-group-prepend">
       <span class="input-group-text">$</span>
     </div>
-    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" id="inputloanpayoff">
+    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" value="${closing.inputloanpayoff || ''}" id="inputloanpayoff">
     <div class="input-group-append">
 
     </div>
@@ -155,7 +156,6 @@ function otherTemplate (other) {
   <h1> Other Page </h1>
   `
 }
-
 function summaryTemplate (summary) {
   return `
   <table class="table table-responsive">

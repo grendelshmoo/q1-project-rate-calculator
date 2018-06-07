@@ -3,13 +3,6 @@ const data = require('./data')
 const templates = require('./templates')
 const calc = require('./calculations')
 
-// Initialize local storage with empty objects for tab state controls
-// if .getItem general returns anything then don't zero.  For each tab.
-
-// localStorage.setItem('general', JSON.stringify({}))
-// localStorage.setItem('closing', JSON.stringify({}))
-// localStorage.setItem('other', JSON.stringify({}))
-
 
 //Render the General Pane
 function renderGeneral() {
@@ -31,7 +24,7 @@ renderGeneral()
 
 //Render the Closing Costs Pane
 function renderClosing() {
-generalPane.innerHTML = templates.closingTemplate()
+  generalPane.innerHTML = templates.closingTemplate()
   // Define Closing Pate input variables.
   const inputTermiteReport = document.getElementById('inputtermitereport')
   const inputAttorneyFees = document.getElementById('inputattorneyfees')

@@ -521,13 +521,6 @@ const data = require('./data')
 const templates = require('./templates')
 const calc = require('./calculations')
 
-// Initialize local storage with empty objects for tab state controls
-// if .getItem general returns anything then don't zero.  For each tab.
-
-// localStorage.setItem('general', JSON.stringify({}))
-// localStorage.setItem('closing', JSON.stringify({}))
-// localStorage.setItem('other', JSON.stringify({}))
-
 
 //Render the General Pane
 function renderGeneral() {
@@ -549,7 +542,7 @@ renderGeneral()
 
 //Render the Closing Costs Pane
 function renderClosing() {
-generalPane.innerHTML = templates.closingTemplate()
+  generalPane.innerHTML = templates.closingTemplate()
   // Define Closing Pate input variables.
   const inputTermiteReport = document.getElementById('inputtermitereport')
   const inputAttorneyFees = document.getElementById('inputattorneyfees')
@@ -700,7 +693,7 @@ renderSummary()
 
 },{"./calculations":1,"./data":2,"./templates":4}],4:[function(require,module,exports){
 function generalTemplate (general = {}) {
-  // console.log(general.inputaddress)
+
   return `
   <h4> Transaction Details </h4>
   <!-- Required Fields  -->
@@ -801,7 +794,8 @@ function generalTemplate (general = {}) {
   `
 }
 
-function closingTemplate (closing) {
+
+function closingTemplate (closing = {}) {
   return `
   <h4> Buyer Closing Costs </h4>
 
@@ -810,7 +804,7 @@ function closingTemplate (closing) {
     <div class="input-group-prepend">
       <span class="input-group-text">$</span>
     </div>
-    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" id="inputtermitereport">
+    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" value="${closing.inputtermitereport || ''}" id="inputtermitereport">
     <div class="input-group-append">
 
     </div>
@@ -821,7 +815,7 @@ function closingTemplate (closing) {
     <div class="input-group-prepend">
       <span class="input-group-text">$</span>
     </div>
-    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" id="inputattorneyfees">
+    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" value="${closing.inputattorneyfees || ''}" id="inputattorneyfees">
     <div class="input-group-append">
 
     </div>
@@ -832,7 +826,7 @@ function closingTemplate (closing) {
     <div class="input-group-prepend">
       <span class="input-group-text">$</span>
     </div>
-    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" id="inputhomeinspection">
+    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" value="${closing.inputhomeinspection || ''}" id="inputhomeinspection">
     <div class="input-group-append">
 
     </div>
@@ -843,7 +837,7 @@ function closingTemplate (closing) {
     <div class="input-group-prepend">
       <span class="input-group-text">$</span>
     </div>
-    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" id="inputloanpayoff">
+    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" value="${closing.inputloanpayoff || ''}" id="inputloanpayoff">
     <div class="input-group-append">
 
     </div>
@@ -856,7 +850,6 @@ function otherTemplate (other) {
   <h1> Other Page </h1>
   `
 }
-
 function summaryTemplate (summary) {
   return `
   <table class="table table-responsive">
