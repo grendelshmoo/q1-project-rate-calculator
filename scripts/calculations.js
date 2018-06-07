@@ -107,7 +107,7 @@ const resultTable = function() {
     } else if (fromFiveHundredToOneM.test(num)) {
       result = Math.floor(num / 10000) * 10000 // working 500000-999999
 
-    } else if (num>=1000000) {
+    } else if (num >= 1000000) {
 
       result = 'OVER'
 
@@ -132,79 +132,77 @@ const resultTable = function() {
       let result = 0
 
 
-      if (active=='OVER') {
+      if (active == 'OVER') {
 
         if (generalLocal.paymentsplit == "BuyerPaysAll") {
           let mult = 0
-            for (i=1000000; i<a; i++) {
-              i+=1000
-              mult = mult + 1
-            }
-          result = (5659+(mult*3))
+          for (i = 1000000; i < a; i++) {
+            i += 1000
+            mult = mult + 1
+          }
+          result = (5659 + (mult * 3))
           finalResult['titleTotal'] = round(result)
           finalResult['titleBuyer'] = round(result)
 
 
 
-      } else if (generalLocal.paymentsplit === "BorrowerPaysAll") {
-        let mult = 0
-          for (i=1000000; i<a; i++) {
-            i+=1000
+        } else if (generalLocal.paymentsplit === "BorrowerPaysAll") {
+          let mult = 0
+          for (i = 1000000; i < a; i++) {
+            i += 1000
             mult = mult + 1
           }
-        result = (5659+(mult*3))
-        finalResult['titleTotal'] = round(result)
+          result = (5659 + (mult * 3))
+          finalResult['titleTotal'] = round(result)
 
-        finalResult['titleBorrower'] = round(result)
+          finalResult['titleBorrower'] = round(result)
 
-      } else {
-        let mult = 0
-          for (i=1000000; i<a; i++) {
-            i+=1000
+        } else {
+          let mult = 0
+          for (i = 1000000; i < a; i++) {
+            i += 1000
             mult = mult + 1
           }
-        result = (5659+(mult*3))
-        finalResult['titleTotal'] = round(result)
-        finalResult['titleBuyer'] = round(result / 2)
-        finalResult['titleBorrower'] = round(result / 2)
+          result = (5659 + (mult * 3))
+          finalResult['titleTotal'] = round(result)
+          finalResult['titleBuyer'] = round(result / 2)
+          finalResult['titleBorrower'] = round(result / 2)
 
-      }
-
-
-
-      } else {
-
-      if (generalLocal.paymentsplit == "BuyerPaysAll") {
-        for (let i in keys) {
-
-          if (active == keys[i]) {
-            finalResult['titleTotal'] = round(values[i])
-            finalResult['titleBuyer'] = round(values[i])
-
-          }
-        }
-
-      } else if (generalLocal.paymentsplit === "BorrowerPaysAll") {
-        for (let i in keys) {
-
-          if (active == keys[i]) {
-            finalResult['titleTotal'] = round(values[i])
-            finalResult['titleBorrower'] = round(values[i])
-
-          }
         }
 
       } else {
-        for (let i in keys) {
 
-          if (active == keys[i]) {
-            finalResult['titleTotal'] = round(values[i])
-            finalResult['titleBuyer'] = round(values[i] / 2)
-            finalResult['titleBorrower'] = round(values[i] / 2)
+        if (generalLocal.paymentsplit == "BuyerPaysAll") {
+          for (let i in keys) {
+
+            if (active == keys[i]) {
+              finalResult['titleTotal'] = round(values[i])
+              finalResult['titleBuyer'] = round(values[i])
+
+            }
           }
-        }
 
-      }
+        } else if (generalLocal.paymentsplit === "BorrowerPaysAll") {
+          for (let i in keys) {
+
+            if (active == keys[i]) {
+              finalResult['titleTotal'] = round(values[i])
+              finalResult['titleBorrower'] = round(values[i])
+
+            }
+          }
+
+        } else {
+          for (let i in keys) {
+
+            if (active == keys[i]) {
+              finalResult['titleTotal'] = round(values[i])
+              finalResult['titleBuyer'] = round(values[i] / 2)
+              finalResult['titleBorrower'] = round(values[i] / 2)
+            }
+          }
+
+        }
       }
     }
 
