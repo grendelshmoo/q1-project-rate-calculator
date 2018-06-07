@@ -170,8 +170,8 @@ function summaryTemplate (summary) {
       <tr>
 
         <td>Title Fee:</td>
-        <td>$0</td>
-        <td>$0</td>
+        <td>\$${summary.titleBuyer || '0'}</td>
+        <td>\$${summary.titleBorrower || '0'}</td>
       </tr>
       <tr>
 

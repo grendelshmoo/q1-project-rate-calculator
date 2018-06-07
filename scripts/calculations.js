@@ -144,8 +144,8 @@ const resultTable = function() {
         for (let i in keys) {
 
           if (active == keys[i]) {
-            finalResult['titleTotal'] = values[i]
-            finalResult['titleBorrower'] = values[i]
+            finalResult['titleTotal'] = round(values[i])
+            finalResult['titleBorrower'] = round(values[i])
 
           }
         }
@@ -154,9 +154,9 @@ const resultTable = function() {
         for (let i in keys) {
 
           if (active == keys[i]) {
-            finalResult['titleTotal'] = values[i]
-            finalResult['titleBuyer'] = values[i] / 2
-            finalResult['titleBorrower'] = values[i] / 2
+            finalResult['titleTotal'] = round(values[i])
+            finalResult['titleBuyer'] = round(values[i] / 2)
+            finalResult['titleBorrower'] = round(values[i] / 2)
           }
         }
 
@@ -165,12 +165,9 @@ const resultTable = function() {
       for (let i in keys) {
 
         if (active == keys[i]) {
-          finalResult['titleTotal'] = values[i]
-          finalResult['titleBuyer'] = values[i] / 2
-          finalResult['titleBorrower'] = values[i] / 2
-          console.log(finalResult['titleTotal'])
-          console.log(finalResult['titleBuyer'])
-          console.log(finalResult['titleBorrower'])
+          finalResult['titleTotal'] = round(values[i])
+          finalResult['titleBuyer'] = round(values[i] / 2)
+          finalResult['titleBorrower'] = round(values[i] / 2)
 
         }
       }
