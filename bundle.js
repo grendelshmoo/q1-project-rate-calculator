@@ -117,26 +117,38 @@ const resultTable = function() {
     return result
   }
 
-  function titleFees(num, location) {
-    let active = rangeFinder(num)
-    let keys = Object.keys(location)
-    let values = Object.values(location)
+  function titleFees() {
 
-    let result = 0
+    if (generalLocal.inputstate == "CNMI") {
+      let location = data.cnmi
+
+    } else {
+      // Set the region table to compare against
+      let location = data.guam
+      //get the sales price
+      let a = parseInt(generalLocal.salesprice.replace(/,/g, ""))
+      let active = rangeFinder(a)
+      let keys = Object.keys(location)
+      let values = Object.values(location)
+      let result = 0
 
 
-    for (let i in keys) {
+      for (let i in keys) {
 
-      if (active == keys[i]) {
-        finalResult['titleTotal'] = values[i]
-        finalResult['buyerTitle'] = values[i] / 2
-        finalResult['borrowerTotal'] = values[i] / 2
+        if (active == keys[i]) {
+          finalResult['titleTotal'] = values[i]
+          finalResult['titleBuyer'] = values[i] / 2
+          finalResult['titleBorrower'] = values[i] / 2
+          console.log(finalResult['titleTotal'])
+          console.log(finalResult['titleBuyer'])
+          console.log(finalResult['titleBorrower'])
 
+        }
       }
     }
 
 
-    return result
+
   }
 
   // Total & Split
@@ -174,7 +186,7 @@ const resultTable = function() {
 
 
   // Call all calculation functions
-  // titleFees()
+  titleFees()
   recordingFees()
   escrowFees()
   splitTotal()
