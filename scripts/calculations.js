@@ -182,28 +182,22 @@ const resultTable = function() {
 
     //BuyerPaysAll
     if (generalLocal.paymentsplit == "BuyerPaysAll") {
-      let a = parseInt(generalLocal.salesprice.replace(/,/g, ""))
-      let b = parseInt(generalLocal.loanamount.replace(/,/g, ""))
+      let result = finalResult['titleTotal'] + finalResult['escrowTotal'] + finalResult['recordingTotal']
 
-      let result = (a + b)
       finalResult['buyerTotal'] = round(result)
 
       //BorrowerPaysAll -
     } else if (generalLocal.paymentsplit === "BorrowerPaysAll") {
-      let a = parseInt(generalLocal.salesprice.replace(/,/g, ""))
-      let b = parseInt(generalLocal.loanamount.replace(/,/g, ""))
+      let result = finalResult['titleTotal'] + finalResult['escrowTotal'] + finalResult['recordingTotal']
 
-      let result = (a + b)
       finalResult['borrowerTotal'] = round(result)
 
     } else {
       //Else Split Evenly
-      let a = parseInt(generalLocal.salesprice.replace(/,/g, ""))
-      let b = parseInt(generalLocal.loanamount.replace(/,/g, ""))
+      let result = finalResult['titleTotal'] + finalResult['escrowTotal'] + finalResult['recordingTotal']
 
-      let result = (a + b) / 2
-      finalResult['buyerTotal'] = round(result)
-      finalResult['borrowerTotal'] = round(result)
+      finalResult['buyerTotal'] = round(result/2)
+      finalResult['borrowerTotal'] = round(result/2)
     }
 
 
