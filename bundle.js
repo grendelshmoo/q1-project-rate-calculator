@@ -132,6 +132,36 @@ const resultTable = function() {
       let values = Object.values(location)
       let result = 0
 
+      if (generalLocal.paymentsplit == "BuyerPaysAll") {
+        for (let i in keys) {
+
+          if (active == keys[i]) {
+            finalResult['titleTotal'] = values[i]
+            finalResult['titleBuyer'] = values[i]
+          }
+        }
+
+      } else if (generalLocal.paymentsplit === "BorrowerPaysAll") {
+        for (let i in keys) {
+
+          if (active == keys[i]) {
+            finalResult['titleTotal'] = values[i]
+            finalResult['titleBorrower'] = values[i]
+
+          }
+        }
+
+      } else {
+        for (let i in keys) {
+
+          if (active == keys[i]) {
+            finalResult['titleTotal'] = values[i]
+            finalResult['titleBuyer'] = values[i] / 2
+            finalResult['titleBorrower'] = values[i] / 2
+          }
+        }
+
+      }
 
       for (let i in keys) {
 
