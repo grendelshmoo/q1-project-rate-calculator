@@ -86,10 +86,37 @@ const resultTable = function() {
     }
   }
 
-  //Title Fees
+  //Title Fees & rangeFinder
+  function rangeFinder(num) {
+    let result = 0
+    let underTen = RegExp('^0*([1-9]|[1-8][0-9]|9[0-9]|[1-8][0-9]{2}|9[0-8][0-9]|99[0-9]|[1-8][0-9]{3}|9[0-8][0-9]{2}|99[0-8][0-9]|999[0-9])$')
+    let fromTenToFifty = RegExp('^0*([1-3][0-9]{4}|4[0-8][0-9]{3}|49[0-8][0-9]{2}|499[0-8][0-9]|4999[0-9])$')
+    let fromFiftyToFiveHundred = RegExp('^0*([5-8][0-9]{4}|9[0-8][0-9]{3}|99[0-8][0-9]{2}|999[0-8][0-9]|9999[0-9]|[1-3][0-9]{5}|4[0-8][0-9]{4}|49[0-8][0-9]{3}|499[0-8][0-9]{2}|4999[0-8][0-9]|49999[0-9])$')
+    let fromFiveHundredToOneM = RegExp('^0*([5-8][0-9]{5}|9[0-8][0-9]{4}|99[0-8][0-9]{3}|999[0-8][0-9]{2}|9999[0-8][0-9]|99999[0-9])$')
+
+
+    if (underTen.test(num)) {
+      result = Math.floor(num/500)*500 //?  working 0-9999
+
+    } else if (fromTenToFifty.test(num)) {
+      result = Math.floor(num/1000)*1000 // working 10000-49999
+
+    } else if (fromFiftyToFiveHundred.test(num)) {
+      result = Math.floor(num/5000)*5000 // working 50000-499999
+
+    } else if (fromFiveHundredToOneM.test(num)) {
+      result = Math.floor(num/10000)*10000 // working 500000-999999
+
+    } else { console.log("OVER")}  // up to and includes 1M, probably need to make it more specific... to 999999
+
+
+
+  return result
+  }
+
 
   function titleFees() {
-
+console.log(data.guam)
 
   }
 
@@ -128,7 +155,7 @@ const resultTable = function() {
 
 
   // Call all calculation functions
-  titleFees()
+  // titleFees()
   recordingFees()
   escrowFees()
   splitTotal()
