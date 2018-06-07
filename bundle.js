@@ -188,8 +188,8 @@ const resultTable = function() {
       //Else Split Evenly
       let result = finalResult['titleTotal'] + finalResult['escrowTotal'] + finalResult['recordingTotal']
 
-      finalResult['buyerTotal'] = round(result/2)
-      finalResult['borrowerTotal'] = round(result/2)
+      finalResult['buyerTotal'] = round(result / 2)
+      finalResult['borrowerTotal'] = round(result / 2)
     }
 
 
@@ -549,7 +549,22 @@ renderGeneral()
 
 //Render the Closing Costs Pane
 function renderClosing() {
-  generalPane.innerHTML = templates.closingTemplate()
+generalPane.innerHTML = templates.closingTemplate()
+  // Define Closing Pate input variables.
+  const inputTermiteReport = document.getElementById('inputtermitereport')
+  const inputAttorneyFees = document.getElementById('inputattorneyfees')
+  const inputHomeInspection = document.getElementById('inputhomeinspection')
+  const inputLoanPayoff = document.getElementById('inputloanpayoff')
+
+  // Event Listeners - Closing page
+  inputTermiteReport.addEventListener('keyup', storeLocal)
+  inputAttorneyFees.addEventListener('keyup', storeLocal)
+  inputHomeInspection.addEventListener('keyup', storeLocal)
+  inputLoanPayoff.addEventListener('keyup', storeLocal)
+
+
+  // generalPane.innerHTML = templates.closingTemplate()
+
 }
 
 //Render the Other pane - To be implemented later.
@@ -582,6 +597,8 @@ const inputZip = document.getElementById('inputzip')
 const inputCompany = document.getElementById('inputcompany')
 const inputPreparedBy = document.getElementById('inputpreparedby')
 const inputPreparedFor = document.getElementById('inputpreparedfor')
+
+
 
 //Define Reset button
 const resetButton = document.getElementById('reset')
@@ -632,8 +649,8 @@ function resetLocal() {
   // renderSummary()
   // summaryTotal = {}
 
-    localStorage.clear()
-    location.reload()
+  localStorage.clear()
+  location.reload()
 
 }
 
@@ -664,16 +681,20 @@ inputPreparedFor.addEventListener('keyup', storeLocal)
 resetButton.addEventListener('click', resetLocal)
 
 
+
+
+
+
 //Render the Summary Column
 function renderSummary() {
 
   // let summaryTotal = calc.total(document.getElementById('salesprice'), document.getElementById('loanamount'))
   // summaryPane.innerHTML = templates.summaryTemplate(summaryTotal)
 
-//  If you can get calculations to return the correct object.
+  //  If you can get calculations to return the correct object.
 
- let resultTable = calc()
- summaryPane.innerHTML = templates.summaryTemplate(resultTable)
+  let resultTable = calc()
+  summaryPane.innerHTML = templates.summaryTemplate(resultTable)
 }
 renderSummary()
 
@@ -789,7 +810,7 @@ function closingTemplate (closing) {
     <div class="input-group-prepend">
       <span class="input-group-text">$</span>
     </div>
-    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" id="inputtermitereport">
     <div class="input-group-append">
 
     </div>
@@ -800,7 +821,7 @@ function closingTemplate (closing) {
     <div class="input-group-prepend">
       <span class="input-group-text">$</span>
     </div>
-    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" id="inputattorneyfees">
     <div class="input-group-append">
 
     </div>
@@ -811,7 +832,7 @@ function closingTemplate (closing) {
     <div class="input-group-prepend">
       <span class="input-group-text">$</span>
     </div>
-    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" id="inputhomeinspection">
     <div class="input-group-append">
 
     </div>
@@ -822,7 +843,7 @@ function closingTemplate (closing) {
     <div class="input-group-prepend">
       <span class="input-group-text">$</span>
     </div>
-    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" id="inputloanpayoff">
     <div class="input-group-append">
 
     </div>

@@ -187,8 +187,8 @@ const resultTable = function() {
       //Else Split Evenly
       let result = finalResult['titleTotal'] + finalResult['escrowTotal'] + finalResult['recordingTotal']
 
-      finalResult['buyerTotal'] = round(result/2)
-      finalResult['borrowerTotal'] = round(result/2)
+      finalResult['buyerTotal'] = round(result / 2)
+      finalResult['borrowerTotal'] = round(result / 2)
     }
 
 

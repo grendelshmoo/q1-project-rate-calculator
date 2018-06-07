@@ -109,7 +109,7 @@ function closingTemplate (closing) {
     <div class="input-group-prepend">
       <span class="input-group-text">$</span>
     </div>
-    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" id="inputtermitereport">
     <div class="input-group-append">
 
     </div>
@@ -120,7 +120,7 @@ function closingTemplate (closing) {
     <div class="input-group-prepend">
       <span class="input-group-text">$</span>
     </div>
-    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" id="inputattorneyfees">
     <div class="input-group-append">
 
     </div>
@@ -131,7 +131,7 @@ function closingTemplate (closing) {
     <div class="input-group-prepend">
       <span class="input-group-text">$</span>
     </div>
-    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" id="inputhomeinspection">
     <div class="input-group-append">
 
     </div>
@@ -142,7 +142,7 @@ function closingTemplate (closing) {
     <div class="input-group-prepend">
       <span class="input-group-text">$</span>
     </div>
-    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" id="inputloanpayoff">
     <div class="input-group-append">
 
     </div>

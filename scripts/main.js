@@ -31,7 +31,22 @@ renderGeneral()
 
 //Render the Closing Costs Pane
 function renderClosing() {
-  generalPane.innerHTML = templates.closingTemplate()
+generalPane.innerHTML = templates.closingTemplate()
+  // Define Closing Pate input variables.
+  const inputTermiteReport = document.getElementById('inputtermitereport')
+  const inputAttorneyFees = document.getElementById('inputattorneyfees')
+  const inputHomeInspection = document.getElementById('inputhomeinspection')
+  const inputLoanPayoff = document.getElementById('inputloanpayoff')
+
+  // Event Listeners - Closing page
+  inputTermiteReport.addEventListener('keyup', storeLocal)
+  inputAttorneyFees.addEventListener('keyup', storeLocal)
+  inputHomeInspection.addEventListener('keyup', storeLocal)
+  inputLoanPayoff.addEventListener('keyup', storeLocal)
+
+
+  // generalPane.innerHTML = templates.closingTemplate()
+
 }
 
 //Render the Other pane - To be implemented later.
@@ -64,6 +79,8 @@ const inputZip = document.getElementById('inputzip')
 const inputCompany = document.getElementById('inputcompany')
 const inputPreparedBy = document.getElementById('inputpreparedby')
 const inputPreparedFor = document.getElementById('inputpreparedfor')
+
+
 
 //Define Reset button
 const resetButton = document.getElementById('reset')
@@ -114,8 +131,8 @@ function resetLocal() {
   // renderSummary()
   // summaryTotal = {}
 
-    localStorage.clear()
-    location.reload()
+  localStorage.clear()
+  location.reload()
 
 }
 
@@ -146,15 +163,19 @@ inputPreparedFor.addEventListener('keyup', storeLocal)
 resetButton.addEventListener('click', resetLocal)
 
 
+
+
+
+
 //Render the Summary Column
 function renderSummary() {
 
   // let summaryTotal = calc.total(document.getElementById('salesprice'), document.getElementById('loanamount'))
   // summaryPane.innerHTML = templates.summaryTemplate(summaryTotal)
 
-//  If you can get calculations to return the correct object.
+  //  If you can get calculations to return the correct object.
 
- let resultTable = calc()
- summaryPane.innerHTML = templates.summaryTemplate(resultTable)
+  let resultTable = calc()
+  summaryPane.innerHTML = templates.summaryTemplate(resultTable)
 }
 renderSummary()
