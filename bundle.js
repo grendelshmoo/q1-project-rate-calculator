@@ -108,11 +108,11 @@ const resultTable = function() {
     } else if (fromFiveHundredToOneM.test(num)) {
       result = Math.floor(num / 10000) * 10000 // working 500000-999999
 
-    } else {
-      console.log("OVER")
-    } // up to and includes 1M, probably need to make it more specific... to 999999
+    } else if (num>=1000000) {
 
+      result = 'OVER'
 
+    }
 
     return result
   }
@@ -132,13 +132,56 @@ const resultTable = function() {
       let values = Object.values(location)
       let result = 0
 
+
+      if (active=='OVER') {
+
+        if (generalLocal.paymentsplit == "BuyerPaysAll") {
+          let mult = 0
+            for (i=1000000; i<a; i++) {
+              i+=1000
+              mult = mult + 1
+            }
+          result = (5659+(mult*3))
+          finalResult['titleTotal'] = round(result)
+          finalResult['titleBuyer'] = round(result)
+
+
+
+      } else if (generalLocal.paymentsplit === "BorrowerPaysAll") {
+        let mult = 0
+          for (i=1000000; i<a; i++) {
+            i+=1000
+            mult = mult + 1
+          }
+        result = (5659+(mult*3))
+        finalResult['titleTotal'] = round(result)
+
+        finalResult['titleBorrower'] = round(result)
+
+      } else {
+        let mult = 0
+          for (i=1000000; i<a; i++) {
+            i+=1000
+            mult = mult + 1
+          }
+        result = (5659+(mult*3))
+        finalResult['titleTotal'] = round(result)
+        finalResult['titleBuyer'] = round(result / 2)
+        finalResult['titleBorrower'] = round(result / 2)
+
+      }
+
+
+
+      } else {
+
       if (generalLocal.paymentsplit == "BuyerPaysAll") {
         for (let i in keys) {
 
           if (active == keys[i]) {
             finalResult['titleTotal'] = round(values[i])
             finalResult['titleBuyer'] = round(values[i])
-            console.log(finalResult['titleBorrower'])
+
           }
         }
 
@@ -162,6 +205,7 @@ const resultTable = function() {
           }
         }
 
+      }
       }
     }
 
@@ -524,10 +568,8 @@ const calc = require('./calculations')
 
 //Render the General Pane
 function renderGeneral() {
-  var state = JSON.parse(localStorage.getItem('general'))
+  let state = JSON.parse(localStorage.getItem('general'))
 
-  // state && (Object.hasOwnKey.general.salesprice)
-  // console.log(state)
 
   if (state && state.hasOwnProperty('salesprice')) {
 
@@ -542,7 +584,21 @@ renderGeneral()
 
 //Render the Closing Costs Pane
 function renderClosing() {
-  generalPane.innerHTML = templates.closingTemplate()
+
+  let state = JSON.parse(localStorage.getItem('closing'))
+  console.log(state)
+
+  if (state && state.hasOwnProperty('inputtermitereport')) {
+
+    document.getElementById('closingpane').innerHTML = templates.closingTemplate(state)
+
+  } else {
+
+    document.getElementById('closingpane').innerHTML = templates.closingTemplate()
+
+  }
+  //generalPane.innerHTML = templates.closingTemplate()
+
   // Define Closing Pate input variables.
   const inputTermiteReport = document.getElementById('inputtermitereport')
   const inputAttorneyFees = document.getElementById('inputattorneyfees')

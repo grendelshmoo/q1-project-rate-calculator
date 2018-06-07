@@ -6,10 +6,8 @@ const calc = require('./calculations')
 
 //Render the General Pane
 function renderGeneral() {
-  var state = JSON.parse(localStorage.getItem('general'))
+  let state = JSON.parse(localStorage.getItem('general'))
 
-  // state && (Object.hasOwnKey.general.salesprice)
-  // console.log(state)
 
   if (state && state.hasOwnProperty('salesprice')) {
 
@@ -24,7 +22,21 @@ renderGeneral()
 
 //Render the Closing Costs Pane
 function renderClosing() {
-  generalPane.innerHTML = templates.closingTemplate()
+
+  let state = JSON.parse(localStorage.getItem('closing'))
+  console.log(state)
+
+  if (state && state.hasOwnProperty('inputtermitereport')) {
+
+    document.getElementById('closingpane').innerHTML = templates.closingTemplate(state)
+
+  } else {
+
+    document.getElementById('closingpane').innerHTML = templates.closingTemplate()
+
+  }
+  //generalPane.innerHTML = templates.closingTemplate()
+
   // Define Closing Pate input variables.
   const inputTermiteReport = document.getElementById('inputtermitereport')
   const inputAttorneyFees = document.getElementById('inputattorneyfees')
