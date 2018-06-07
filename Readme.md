@@ -1,5 +1,5 @@
 # Galvanize Q1 Project - Title/Escrow Rate Calculator
-By * **Craig Fell** - A student at [Galvanize](https://galvanize.com)
+By **Craig Fell** - A student at [Galvanize](https://galvanize.com)
 
 This is a rate calculator for a title & escrow services company based in the south pacific.  All rates and fees are customized to the company, the region, and the underwriter.
 
@@ -34,7 +34,7 @@ live-server
 * [Browserify](https://http://browserify.org/) - Used to provide require and build bundle.js
 
 ## Screenshots
-<img src="https://cdn.pbrd.co/images/H5wJPWw.png" width=“640” alt=“landing page“ />
+<img src="http://calc.fell.org/screenshots/ratecalc_screenshot.png" width=“640” alt=“landing page“ />
 
 
 ## Acknowledgments
